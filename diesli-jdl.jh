@@ -1,0 +1,98 @@
+entity Motto{
+  informacionEtimologica String,
+  nombre String
+}
+entity MottoFav{
+}
+
+entity Definition{
+  definition String
+}
+
+entity MottoDefinition{
+    materia String,
+    registro String,
+    region String,
+    ejemplo String,
+    categoria String,
+    popularity Long
+}
+
+entity User{
+  nombre String,
+  surename String,
+  username String,
+  avatar ImageBlob,
+  mail String
+}
+
+
+entity Board {
+  boardName String
+}
+entity Card {
+	date LocalDate,
+    content String,
+    title String,
+    customExcerpt String,
+    featuredImage ImageBlob,
+    views Long,
+    popularity Long,
+    
+}
+entity CardReply{
+	date LocalDate,
+    content String,
+    popularity Long
+}
+relationship ManyToOne {
+	MottoDefinition{sinonimo} to MottoDefinition
+}
+
+relationship ManyToOne {
+	MottoDefinition{antonimo} to MottoDefinition
+}
+
+relationship ManyToOne {
+	MottoDefinition{lemaSemejanza} to MottoDefinition
+}
+
+relationship ManyToOne {
+	MottoDefinition{lemaOposicion} to MottoDefinition
+}
+
+relationship OneToMany{
+  Motto{MottoDefinition} to MottoDefinition{Motto(nombre)}
+}
+
+relationship OneToMany{
+  Definition{MottoDefinition} to MottoDefinition{Definition(definition)}
+}
+
+relationship OneToMany{
+  Motto{Definition} to Definition{Motto(nombre)}
+}
+
+relationship OneToMany{
+  User{Motto} to Motto{User}
+}
+
+relationship OneToMany{
+  Motto{MottoFav} to MottoFav{Motto(nombre)}
+}
+
+relationship OneToMany{
+  User{MottoFav} to MottoFav{User}
+}
+
+relationship OneToMany {
+  Card{CardReply} to CardReply{Card}
+}
+
+relationship OneToMany {
+  Board{Card} to Card{Board}
+}
+
+relationship OneToMany{
+	User{Card} to Card{User}
+}

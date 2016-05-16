@@ -1,0 +1,82 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "sinonimo",
+      "otherEntityName": "mottoDefinition",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipName": "antonimo",
+      "otherEntityName": "mottoDefinition",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 3,
+      "relationshipName": "lemaSemejanza",
+      "otherEntityName": "mottoDefinition",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 4,
+      "relationshipName": "lemaOposicion",
+      "otherEntityName": "mottoDefinition",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 5,
+      "relationshipName": "motto",
+      "otherEntityName": "motto",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    },
+    {
+      "relationshipId": 6,
+      "relationshipName": "definition",
+      "otherEntityName": "definition",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "definition"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "materia",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "registro",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "region",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "ejemplo",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 5,
+      "fieldName": "categoria",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 6,
+      "fieldName": "popularity",
+      "fieldType": "Long"
+    }
+  ],
+  "changelogDate": "20160504173632",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
+}

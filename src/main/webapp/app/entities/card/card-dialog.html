@@ -1,0 +1,101 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myCardLabel">Create or edit a Card</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.card.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.card.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_date">Date</label>
+                <div class="input-group">
+                    <input id="field_date" type="text" class="form-control" name="date" uib-datepicker-popup="{{dateformat}}" ng-model="vm.card.date" is-open="vm.datePickerOpenStatus.date"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('date')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_content">Content</label>
+            <input type="text" class="form-control" name="content" id="field_content"
+                    ng-model="vm.card.content"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.card.title"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_customExcerpt">Custom Excerpt</label>
+            <input type="text" class="form-control" name="customExcerpt" id="field_customExcerpt"
+                    ng-model="vm.card.customExcerpt"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setFeaturedImage($file, vm.card)" ngf-pattern="'image/*'">
+            <label class="control-label" for="field_featuredImage">Featured Image</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.card.featuredImageContentType + ';base64,' + vm.card.featuredImage}}" style="max-height: 100px;" ng-if="vm.card.featuredImage"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{vm.card.featuredImageContentType}}, {{byteSize(vm.card.featuredImage)}}</span>
+                    <button ng-click="vm.card.featuredImage=null;vm.card.featuredImageContentType=null;"
+                            ng-if="vm.card.featuredImage"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setFeaturedImage($file, vm.card)" accept="image/*">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="featuredImage" id="field_featuredImage"
+                    ng-model="vm.card.featuredImage"
+                     />
+            <input type="hidden" class="form-control" name="featuredImageContentType" id="field_featuredImageContentType"
+                    ng-model="vm.card.featuredImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_views">Views</label>
+            <input type="number" class="form-control" name="views" id="field_views"
+                    ng-model="vm.card.views"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_popularity">Popularity</label>
+            <input type="number" class="form-control" name="popularity" id="field_popularity"
+                    ng-model="vm.card.popularity"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_board">Board</label>
+            <select class="form-control" id="field_board" name="board" ng-model="vm.card.board" ng-options="board as board.id for board in vm.boards track by board.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.card.user" ng-options="user as user.id for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span>Card Reply</span> {{vm.cardReply.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{vm.cardReply.date | date:'mediumDate'}}</span>
+        </dd>
+        <hr>
+        <dt><span>Content</span></dt>
+        <dd>
+            <span>{{vm.cardReply.content}}</span>
+        </dd>
+        <hr>
+        <dt><span>Popularity</span></dt>
+        <dd>
+            <span>{{vm.cardReply.popularity}}</span>
+        </dd>
+        <hr>
+        <dt><span>Card</span></dt>
+        <dd>
+            <a ui-sref="card-detail({id:vm.cardReply.card.id})">{{vm.cardReply.card.id}}</a>
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

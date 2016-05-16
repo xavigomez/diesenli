@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity MottoDefinition.
+    -->
+    <changeSet id="20160504173632-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="sinonimo_id"
+                                 baseTableName="motto_definition"
+                                 constraintName="fk_mottodefinition_sinonimo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motto_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="antonimo_id"
+                                 baseTableName="motto_definition"
+                                 constraintName="fk_mottodefinition_antonimo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motto_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="lema_semejanza_id"
+                                 baseTableName="motto_definition"
+                                 constraintName="fk_mottodefinition_lemasemejanza_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motto_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="lema_oposicion_id"
+                                 baseTableName="motto_definition"
+                                 constraintName="fk_mottodefinition_lemaoposicion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motto_definition"/>
+
+        <addForeignKeyConstraint baseColumnNames="motto_id"
+                                 baseTableName="motto_definition"
+                                 constraintName="fk_mottodefinition_motto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motto"/>
+
+        <addForeignKeyConstraint baseColumnNames="definition_id"
+                                 baseTableName="motto_definition"
+                                 constraintName="fk_mottodefinition_definition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="definition"/>
+
+    </changeSet>
+</databaseChangeLog>

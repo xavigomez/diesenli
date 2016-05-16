@@ -1,0 +1,22 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "card",
+      "otherEntityName": "card",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "board"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "boardName",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160504173634",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
+}

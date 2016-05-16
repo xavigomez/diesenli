@@ -1,0 +1,90 @@
+<div>
+    <h2>Motto Definitions</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="motto-definition.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Motto Definition
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Materia</span></th>
+                    <th><span>Registro</span></th>
+                    <th><span>Region</span></th>
+                    <th><span>Ejemplo</span></th>
+                    <th><span>Categoria</span></th>
+                    <th><span>Popularity</span></th>
+                    <th><span>Sinonimo</span></th>
+                    <th><span>Antonimo</span></th>
+                    <th><span>Lema Semejanza</span></th>
+                    <th><span>Lema Oposicion</span></th>
+                    <th><span>Motto</span></th>
+                    <th><span>Definition</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mottoDefinition in vm.mottoDefinitions track by mottoDefinition.id">
+                    <td><a ui-sref="motto-definition-detail({id:mottoDefinition.id})">{{mottoDefinition.id}}</a></td>
+                    <td>{{mottoDefinition.materia}}</td>
+                    <td>{{mottoDefinition.registro}}</td>
+                    <td>{{mottoDefinition.region}}</td>
+                    <td>{{mottoDefinition.ejemplo}}</td>
+                    <td>{{mottoDefinition.categoria}}</td>
+                    <td>{{mottoDefinition.popularity}}</td>
+                    <td>
+                        <a ui-sref="motto-definition-detail({id:mottoDefinition.sinonimo.id})">{{mottoDefinition.sinonimo.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="motto-definition-detail({id:mottoDefinition.antonimo.id})">{{mottoDefinition.antonimo.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="motto-definition-detail({id:mottoDefinition.lemaSemejanza.id})">{{mottoDefinition.lemaSemejanza.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="motto-definition-detail({id:mottoDefinition.lemaOposicion.id})">{{mottoDefinition.lemaOposicion.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="motto-detail({id:mottoDefinition.motto.id})">{{mottoDefinition.motto.nombre}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="definition-detail({id:mottoDefinition.definition.id})">{{mottoDefinition.definition.definition}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="motto-definition-detail({id:mottoDefinition.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="motto-definition.edit({id:mottoDefinition.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="motto-definition.delete({id:mottoDefinition.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

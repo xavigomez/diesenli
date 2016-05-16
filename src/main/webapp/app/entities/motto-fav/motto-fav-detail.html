@@ -1,0 +1,23 @@
+
+<div>
+    <h2><span>Motto Fav</span> {{vm.mottoFav.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Motto</span></dt>
+        <dd>
+            <a ui-sref="motto-detail({id:vm.mottoFav.motto.id})">{{vm.mottoFav.motto.nombre}}</a>
+        </dd>
+        <hr>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.mottoFav.user.id}}
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

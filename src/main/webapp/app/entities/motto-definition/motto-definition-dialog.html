@@ -1,0 +1,98 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myMottoDefinitionLabel">Create or edit a Motto Definition</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.mottoDefinition.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.mottoDefinition.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_materia">Materia</label>
+            <input type="text" class="form-control" name="materia" id="field_materia"
+                    ng-model="vm.mottoDefinition.materia"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_registro">Registro</label>
+            <input type="text" class="form-control" name="registro" id="field_registro"
+                    ng-model="vm.mottoDefinition.registro"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_region">Region</label>
+            <input type="text" class="form-control" name="region" id="field_region"
+                    ng-model="vm.mottoDefinition.region"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_ejemplo">Ejemplo</label>
+            <input type="text" class="form-control" name="ejemplo" id="field_ejemplo"
+                    ng-model="vm.mottoDefinition.ejemplo"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_categoria">Categoria</label>
+            <input type="text" class="form-control" name="categoria" id="field_categoria"
+                    ng-model="vm.mottoDefinition.categoria"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_popularity">Popularity</label>
+            <input type="number" class="form-control" name="popularity" id="field_popularity"
+                    ng-model="vm.mottoDefinition.popularity"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label for="field_sinonimo">Sinonimo</label>
+            <select class="form-control" id="field_sinonimo" name="sinonimo" ng-model="vm.mottoDefinition.sinonimo" ng-options="mottoDefinition as mottoDefinition.id for mottoDefinition in vm.mottodefinitions track by mottoDefinition.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_antonimo">Antonimo</label>
+            <select class="form-control" id="field_antonimo" name="antonimo" ng-model="vm.mottoDefinition.antonimo" ng-options="mottoDefinition as mottoDefinition.id for mottoDefinition in vm.mottodefinitions track by mottoDefinition.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_lemaSemejanza">Lema Semejanza</label>
+            <select class="form-control" id="field_lemaSemejanza" name="lemaSemejanza" ng-model="vm.mottoDefinition.lemaSemejanza" ng-options="mottoDefinition as mottoDefinition.id for mottoDefinition in vm.mottodefinitions track by mottoDefinition.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_lemaOposicion">Lema Oposicion</label>
+            <select class="form-control" id="field_lemaOposicion" name="lemaOposicion" ng-model="vm.mottoDefinition.lemaOposicion" ng-options="mottoDefinition as mottoDefinition.id for mottoDefinition in vm.mottodefinitions track by mottoDefinition.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_motto">Motto</label>
+            <select class="form-control" id="field_motto" name="motto" ng-model="vm.mottoDefinition.motto" ng-options="motto as motto.nombre for motto in vm.mottos track by motto.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_definition">Definition</label>
+            <select class="form-control" id="field_definition" name="definition" ng-model="vm.mottoDefinition.definition" ng-options="definition as definition.definition for definition in vm.definitions track by definition.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

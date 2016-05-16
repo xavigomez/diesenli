@@ -1,0 +1,64 @@
+<div>
+    <h2>Card Replies</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="card-reply.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Card Reply
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Date</span></th>
+                    <th><span>Content</span></th>
+                    <th><span>Popularity</span></th>
+                    <th><span>Card</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cardReply in vm.cardReplies track by cardReply.id">
+                    <td><a ui-sref="card-reply-detail({id:cardReply.id})">{{cardReply.id}}</a></td>
+                        <td>{{cardReply.date | date:'mediumDate'}}</td>
+                    <td>{{cardReply.content}}</td>
+                    <td>{{cardReply.popularity}}</td>
+                    <td>
+                        <a ui-sref="card-detail({id:cardReply.card.id})">{{cardReply.card.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="card-reply-detail({id:cardReply.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="card-reply.edit({id:cardReply.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="card-reply.delete({id:cardReply.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

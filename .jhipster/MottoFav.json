@@ -1,0 +1,23 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "motto",
+      "otherEntityName": "motto",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipName": "user",
+      "otherEntityName": "user",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [],
+  "changelogDate": "20160504173630",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
+}

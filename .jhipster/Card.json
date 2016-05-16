@@ -1,0 +1,67 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "cardReply",
+      "otherEntityName": "cardReply",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "card"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipName": "board",
+      "otherEntityName": "board",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipId": 3,
+      "relationshipName": "user",
+      "otherEntityName": "user",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "date",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldId": 2,
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 3,
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 4,
+      "fieldName": "customExcerpt",
+      "fieldType": "String"
+    },
+    {
+      "fieldId": 5,
+      "fieldName": "featuredImage",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
+      "fieldId": 6,
+      "fieldName": "views",
+      "fieldType": "Long"
+    },
+    {
+      "fieldId": 7,
+      "fieldName": "popularity",
+      "fieldType": "Long"
+    }
+  ],
+  "changelogDate": "20160504173635",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
+}

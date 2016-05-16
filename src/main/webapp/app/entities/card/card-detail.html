@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span>Card</span> {{vm.card.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{vm.card.date | date:'mediumDate'}}</span>
+        </dd>
+        <hr>
+        <dt><span>Content</span></dt>
+        <dd>
+            <span>{{vm.card.content}}</span>
+        </dd>
+        <hr>
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{vm.card.title}}</span>
+        </dd>
+        <hr>
+        <dt><span>Custom Excerpt</span></dt>
+        <dd>
+            <span>{{vm.card.customExcerpt}}</span>
+        </dd>
+        <hr>
+        <dt><span>Featured Image</span></dt>
+        <dd>
+            <img data-ng-src="{{'data:' + vm.card.featuredImageContentType + ';base64,' + vm.card.featuredImage}}" style="max-width: 100%;" ng-if="vm.card.featuredImage"/>
+            <div>{{vm.card.featuredImageContentType}}, {{vm.byteSize(vm.card.featuredImage)}}</div>
+        </dd>
+        <hr>
+        <dt><span>Views</span></dt>
+        <dd>
+            <span>{{vm.card.views}}</span>
+        </dd>
+        <hr>
+        <dt><span>Popularity</span></dt>
+        <dd>
+            <span>{{vm.card.popularity}}</span>
+        </dd>
+        <hr>
+        <dt><span>Board</span></dt>
+        <dd>
+            <a ui-sref="board-detail({id:vm.card.board.id})">{{vm.card.board.id}}</a>
+        </dd>
+        <hr>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.card.user.id}}
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

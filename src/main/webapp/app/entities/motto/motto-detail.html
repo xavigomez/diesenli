@@ -1,0 +1,28 @@
+
+<div>
+    <h2><span>Motto</span> {{vm.motto.id}}</h2>
+    <hr>
+    <dl class="dl-horizontal">
+        <dt><span>Informacion Etimologica</span></dt>
+        <dd>
+            <span>{{vm.motto.informacionEtimologica}}</span>
+        </dd>
+        <hr>
+        <dt><span>Nombre</span></dt>
+        <dd>
+            <span>{{vm.motto.nombre}}</span>
+        </dd>
+        <hr>
+        <dt><span>User</span></dt>
+        <dd>
+            {{vm.motto.user.id}}
+        </dd>
+        <hr>
+    </dl>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

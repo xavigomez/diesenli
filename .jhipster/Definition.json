@@ -1,0 +1,29 @@
+{
+  "relationships": [
+    {
+      "relationshipId": 1,
+      "relationshipName": "mottoDefinition",
+      "otherEntityName": "mottoDefinition",
+      "relationshipType": "one-to-many",
+      "otherEntityRelationshipName": "definition"
+    },
+    {
+      "relationshipId": 2,
+      "relationshipName": "motto",
+      "otherEntityName": "motto",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "nombre"
+    }
+  ],
+  "fields": [
+    {
+      "fieldId": 1,
+      "fieldName": "definition",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20160504173631",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no"
+}
