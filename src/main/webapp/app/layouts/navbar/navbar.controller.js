@@ -8,7 +8,13 @@
     NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ENV', 'LoginService'];
 
     function NavbarController ($state, Auth, Principal, ENV, LoginService) {
+
         var vm = this;
+
+
+        $('div#logged-user').click(function () {
+           $('.logged-user-options').toggleClass('open');
+        });
 
         vm.isNavbarCollapsed = true;
         vm.isAuthenticated = Principal.isAuthenticated;
@@ -18,6 +24,23 @@
         vm.toggleNavbar = toggleNavbar;
         vm.collapseNavbar = collapseNavbar;
         vm.$state = $state;
+        vm.settingsAccount = null;
+
+        var copyAccount = function ( account ){
+            return {
+                activated: account.activated,
+                email: account.email,
+                firstName: account.firstName,
+                langKey: account.langKey,
+                lastName: account.lastName,
+                login: account.login
+            };
+        };
+
+        Principal.identity().then(function(account) {
+            vm.settingsAccount = copyAccount(account);
+        });
+
 
         function login () {
             collapseNavbar();
@@ -37,5 +60,6 @@
         function collapseNavbar () {
             vm.isNavbarCollapsed = true;
         }
+
     }
 })();

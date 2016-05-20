@@ -1,3 +1,32 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="hat" class="row">
+                    <div id="logo-container" class="col-xs-6">
+                        <h3 ui-sref="home" ><a href="">Diesenli.</a></h3>
+                    </div>
+                    <div id="last-update-container" class="col-xs-6 text-right"><span id="last-update">Última actualización: 21 de abril</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div id="head" class="row" ng-switch="vm.isAuthenticated()">
+                    <div id="main-menu" class="col-xs-8 text-left">
+                        <a ui-sref="buscador" href="" class="btn btn-link active">buscador</a>
+                        <a href="" class="btn btn-link">Introducción</a>
+                        <a href="" class="btn btn-link">Guía de uso</a>
+                        <a href="" class="btn btn-link">propón una palabra</a>
+                        <a href="" class="btn btn-link">comunidad</a></div>
+                    <div ng-class="{active: vm.$state.includes('account')}" id="register-signin-container" class="col-xs-4 text-right">
+                        <a ng-switch-when="false" ui-sref="register" href="" class="btn btn-default btn-register">registrarse</a>
+                        <a ng-switch-when="false" ng-click="vm.login()" href="" class="btn btn-link btn-signin">entrar</a>
+                        <a ng-switch-when='true' ng-click='vm.logout()' class='btn btn-link btn-signin' href="">Salir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -20,13 +49,13 @@
                 <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
                 <li ng-class="{active: vm.$state.includes('entity')}" ng-switch-when="true" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
-                        <span>
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="hidden-sm">
-                                Entities
-                            </span>
-                            <b class="caret"></b>
-                        </span>
+                          <span>
+                              <span class="glyphicon glyphicon-th-list"></span>
+                              <span class="hidden-sm">
+                                  Entities
+                              </span>
+                              <b class="caret"></b>
+                          </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active" >
@@ -76,13 +105,13 @@
                 </li>
                 <li ng-class="{active: vm.$state.includes('account')}" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="account-menu">
-                        <span>
-                            <span class="glyphicon glyphicon-user"></span>
-                            <span class="hidden-sm">
-                                Account
-                            </span>
-                            <b class="caret"></b>
-                        </span>
+                          <span>
+                              <span class="glyphicon glyphicon-user"></span>
+                              <span class="hidden-sm">
+                                  Accounte
+                              </span>
+                              <b class="caret"></b>
+                          </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active" ng-switch-when="true">
@@ -125,11 +154,11 @@
                 </li>
                 <li ng-class="{active: vm.$state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" uib-dropdown class="dropdown pointer">
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="admin-menu">
-                        <span>
-                            <span class="glyphicon glyphicon-tower"></span>
-                            <span class="hidden-sm">Administration</span>
-                            <b class="caret"></b>
-                        </span>
+                          <span>
+                              <span class="glyphicon glyphicon-tower"></span>
+                              <span class="hidden-sm">Administration</span>
+                              <b class="caret"></b>
+                          </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
                         <li ui-sref-active="active">

@@ -1,41 +1,53 @@
-<div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
+  <section id="hero">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="hero-claim-container"><span class="claim">¿Buscas una definición?</span></div>
+          <div class="hero-play-container"><a href="https://vimeo.com/78740926" class="popup"><img src="../../content/images/play.svg" alt="" class="play"/></a></div>
+          <div class="hero-people-container"><img src="../../content/images/characters.svg" alt="" class="people"/></div>
         </div>
-        <div class="col-md-8">
-            <h1>Welcome, Java Hipster!</h1>
-            <p class="lead">This is your homepage</p>
-
-            <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-                </div>
-
-                <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
-                </div>
-            </div>
-
-            <p>
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
-            </p>
-        </div>
+      </div>
     </div>
-</div>
+  </section>
+  <section id="simple-search">
+    <div class="container">
+      <div id="search-input" class="row">
+        <div class="col-xs-12 header">
+          <h1>¡Nosotros te ayudamos a encontrarla!</h1>
+        </div>
+        <div class="col-xs-6 left-side"><img src="../../content/images/search-it.svg" alt=""/></div>
+        <div class="col-xs-6 right-side"><span> Diesenli es un diccionario en línea de la lengua española en el que hemos trabajado para que encuentres cualquier definición de la manera más sencilla y rápida posible. Con nuestro buscador podrás filtrar por tipología, zona geográfica o registro.</span><a class="btn btn-default btn-search-home-cta">¡A buscar!</a></div>
+      </div>
+    </div>
+  </section>
+  <section id="home-yes-no">
+    <div class="container">
+      <div class="row yes-no-cards-container">
+        <div class="col-xs-6 header">
+          <h1>Nuestro diccionario evoluciona</h1>
+          <p>Y lo hace gracias a ti. Aparte de buscar también te ofrecemos la posibilidad de proponer palabras que uses con asiduidad y que creas que deberían formar parte del diccionario de la lengua española. Una vez propongas una nueva acepción serán el resto de usuarios los que voten si la usan o no y, en caso de haber mayoría... ¡Tu acepción formará parte de nuestro diccionario!</p>
+        </div>
+        <div class="col-xs-6 card-example">
+          <div class="cards-container">
+            <div class="card yes-no-card"><span class="yes-no-question">¿Usas esta palabra?</span><span class="yes-no-word">Facebuquear</span>
+              <div class="yes-no-btns">
+                <div class="btn btn-default btn-no">No</div>
+                <div class="btn btn-default btn-yes">Sí</div>
+              </div>
+            </div>
+            <div class="cards-end"><img src="../../content/images/happy.svg" alt=""/>
+              <h1>¡Has acabado con las palabras que teníamos!</h1>
+              <p>¿Qué tal si esta vez propones tú una?</p><a class="btn btn-default btn-cards-end">¡Quiero proponer una!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="community">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12"><span>¡No olvides pasar por nuestra <a href="">comunidad</a> si tienes alguna duda o sugerencia!</span></div>
+      </div>
+    </div>
+  </section>
