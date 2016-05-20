@@ -43,7 +43,7 @@
                         <div class="dropdown-options hidden-dd"><span data-related-motto='1' class="related-motto-option">Sí</span><span data-related-motto='2' class="related-motto-option">No</span><span data-related-motto='3' class="related-motto-option">Por semejanza</span><span data-related-motto='4' class="related-motto-option">Por oposición</span></div>
                     </div>
                     <div id="examples" class="search-option-container switchable">Ejemplos</div>
-                    <div class="dropdown-search-option search-option-container"> <span id="order-by" data-order-by='1'>Ordenación por popularidad</span>
+                    <div class="dropdown-search-option search-option-container"><span id="order-by" data-order-by='1'>Ordenación por popularidad</span>
                         <div class="dropdown-options hidden-dd"><span data-order-by='1' class="order-by-option">Ordenación por popularidad</span><span data-order-by='2' class="order-by-option">Ordenación normal</span></div>
                     </div>
                 </div>
@@ -63,10 +63,13 @@
     <section id="searchresults">
         <div class="container">
             <div class="row">
-                <div id="results-area" class="col-xs-12"><span class="search-results-claim">Resultados de la búsqueda</span><span class="search-results-word">{{mottoDefinition.definition.definition}}</span><span class="search-results-etymology">Del lat. Luna</span>
+                <div id="results-area" class="col-xs-12">
+                    <span class="search-results-claim">Resultados de la búsqueda</span>
+                    <span class="search-results-word">{{ctrl.mottoDefinitions[0].motto.nombre}}</span>
+                    <span class="search-results-etymology">{{ctrl.mottoDefinitions[0].motto.informacionEtimologica}}</span>
                     <div class="row">
                         <div id="cards-container" class="col-xs-12">
-                            <div ng-repeat="mottoDefinition in ctrl.mottoDefinitions track by mottoDefinition.id" class="card">
+                            <div ng-class='{closed:!$first}' ng-repeat="mottoDefinition in ctrl.mottoDefinitions track by mottoDefinition.id" class="card">
                                 <div class="card-entry-order-container">
                                     <span class="card-entry-order">1</span>
                                     <span class="card-entry-upvote">
@@ -74,11 +77,12 @@
                                     </span>
                                     <span class="card-entry-like">
                                         <i class="fa fa-fw fa-heart-o"></i>
-                                    </span></div>
+                                    </span>
+                                </div>
                                 <div class="card-definition-container">
                                     <span class="card-etymology">
                                         <span class="etymology-category">{{mottoDefinition.categoria}}<span>.</span></span>
-                                        <span class="etymology-materia"><td>{{mottoDefinition.materia}}</td><span>.</span></span>
+                                        <span class="etymology-materia">{{mottoDefinition.materia}}<span>.</span></span>
                                         <span class="etymology-region">{{mottoDefinition.region}}<span>.</span></span>
                                         <span class="etymology-level">{{mottoDefinition.registro}}<span>.</span></span>
                                     </span>
@@ -87,38 +91,20 @@
                                     <span class="card-example">{{mottoDefinition.ejemplo}}</span>
                                     <span class="card-synonims-and-antonyms">
                                         <span class="card-synonyms">
-                                            Sinónimos:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span>
+                                            Sinónimos:<span ng-if="mottoDefinition.sinonimo.id !== undefined">{{mottoDefinition.sinonimo.motto.nombre}}</span><span ng-if="mottoDefinition.sinonimo.id === undefined" class="no-result">No hay sinónimos para este lema.</span>
                                         </span>
                                         <span class="card-antonyms">
-                                            Antónimos:<span class="no-result">Esta palabra no tiene antónimos.</span>
+                                            Antónimos:<span ng-if="mottoDefinition.antonimo.id !== undefined">{{mottoDefinition.antonimo.motto.nombre}}</span><span ng-if="mottoDefinition.antonimo.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                     </span>
                                     <span class="card-related-mottos">
                                         <span class="card-relative">
-                                            Por semejanza:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span>
+                                            Por semejanza:<span ng-if="mottoDefinition.lemaSemejanza.id !== undefined">{{mottoDefinition.lemaSemejanza.motto.nombre}}</span><span ng-if="mottoDefinition.lemaSemejanza.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                         <span class="card-oposition">
-                                            Por oposición:<span class="no-result">Esta palabra no tiene lemas por oposición.</span>
+                                            Por oposición:<span ng-if="mottoDefinition.lemaOposicion.id !== undefined">{{mottoDefinition.lemaOposicion.motto.nombre}}</span><span ng-if="mottoDefinition.lemaOposicion.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                     </span>
-                                </div>
-                            </div>
-                            <div class="card closed">
-                                <div class="card-entry-order-container"><span class="card-entry-order">2</span><span class="card-entry-upvote"><i class="fa fa-fw fa-chevron-up"></i></span><span class="card-entry-like"><i class="fa fa-fw fa-heart-o"></i></span></div>
-                                <div class="card-definition-container"><span class="card-etymology"><span class="etymology-category">F<span>.</span></span><span class="etymology-materia">Anim<span>.</span></span><span class="etymology-region">Coloq<span>.</span></span><span class="etymology-level">Sal<span>.</span></span></span><span class="card-definition">Único satélite natural de la Tierra, que se encuentra a 384.400 km de esta, tiene un diámetro de 3.476 km y realiza un giro completo alrededor de aquella cada 27.32 días.</span>
-                                    <hr/><span class="card-example">Los osos son mohosos.</span><span class="card-synonims-and-antonyms"><span class="card-synonyms">Sinónimos:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span></span><span class="card-antonyms">Antónimos:<span class="no-result">Esta palabra no tiene antónimos.</span></span></span><span class="card-related-mottos"><span class="card-relative">Por semejanza:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span></span><span class="card-oposition">Por oposición:<span class="no-result">Esta palabra no tiene lemas por oposición.</span></span></span>
-                                </div>
-                            </div>
-                            <div class="card closed">
-                                <div class="card-entry-order-container"><span class="card-entry-order">3</span><span class="card-entry-upvote"><i class="fa fa-fw fa-chevron-up"></i></span><span class="card-entry-like"><i class="fa fa-fw fa-heart-o"></i></span></div>
-                                <div class="card-definition-container"><span class="card-etymology"><span class="etymology-category">F<span>.</span></span><span class="etymology-materia">Anim<span>.</span></span><span class="etymology-region">Coloq<span>.</span></span><span class="etymology-level">Sal<span>.</span></span></span><span class="card-definition">Único satélite natural de la Tierra, que se encuentra a 384.400 km de esta, tiene un diámetro de 3.476 km y realiza un giro completo alrededor de aquella cada 27.32 días.</span>
-                                    <hr/><span class="card-example">Los osos son mohosos.</span><span class="card-synonims-and-antonyms"><span class="card-synonyms">Sinónimos:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span></span><span class="card-antonyms">Antónimos:<span class="no-result">Esta palabra no tiene antónimos.</span></span></span><span class="card-related-mottos"><span class="card-relative">Por semejanza:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span></span><span class="card-oposition">Por oposición:<span class="no-result">Esta palabra no tiene lemas por oposición.</span></span></span>
-                                </div>
-                            </div>
-                            <div class="card closed">
-                                <div class="card-entry-order-container"><span class="card-entry-order">4</span><span class="card-entry-upvote"><i class="fa fa-fw fa-chevron-up"></i></span><span class="card-entry-like"><i class="fa fa-fw fa-heart-o"></i></span></div>
-                                <div class="card-definition-container"><span class="card-etymology"><span class="etymology-category">F<span>.</span></span><span class="etymology-materia">Anim<span>.</span></span><span class="etymology-region">Coloq<span>.</span></span><span class="etymology-level">Sal<span>.</span></span></span><span class="card-definition">Único satélite natural de la Tierra, que se encuentra a 384.400 km de esta, tiene un diámetro de 3.476 km y realiza un giro completo alrededor de aquella cada 27.32 días.</span>
-                                    <hr/><span class="card-example">Los osos son mohosos.</span><span class="card-synonims-and-antonyms"><span class="card-synonyms">Sinónimos:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span></span><span class="card-antonyms">Antónimos:<span class="no-result">Esta palabra no tiene antónimos.</span></span></span><span class="card-related-mottos"><span class="card-relative">Por semejanza:<span>Ferrán, Pitón, Ladykiller, Wetingpanties</span></span><span class="card-oposition">Por oposición:<span class="no-result">Esta palabra no tiene lemas por oposición.</span></span></span>
                                 </div>
                             </div>
                         </div>
