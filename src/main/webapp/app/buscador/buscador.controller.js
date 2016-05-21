@@ -20,8 +20,33 @@
         vm.withExamples = true;
         vm.orderedBy = true;
 
-        function searchByControl() {
+
+        vm.searchByControl = function() {
             console.log('click');
+        }
+
+        vm.filterEtimology = function(){
+                vm.withEtymology = !vm.withEtymology;
+        }
+
+        vm.filterSynonym = function(){
+                vm.withSynonyms = !vm.withSynonyms;
+        }
+
+        vm.filterAntonym = function(){
+                vm.withAntonyms = !vm.withAntonyms;
+        }
+
+        vm.filterExamples = function(){
+                vm.withExamples = !vm.withExamples;
+        }
+
+        function isSearchMade(){
+            if( !$('.card').length ){
+                return false;
+            }else{
+                return true;
+            }
         }
 
         $('span.advanced-search-switch').click(function () {

@@ -1,29 +1,28 @@
 <section ng-controller="buscadorCtrl as ctrl" >
     <section id="searchbox">
-        <md-autocomplete
-            ng-disabled="ctrl.isDisabled"
-            md-no-cache="ctrl.noCache"
-            md-selected-item="ctrl.selectedItem"
-            md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-            md-search-text="ctrl.searchText"
-            md-selected-item-change="ctrl.selectedItemChange(item)"
-            md-items="item in ctrl.items"
-            md-item-text="item.nombre"
-            md-min-length="0"
-            placeholder="Introduce la palabra a buscar"
-            md-select-on-match="true"
-        <md-item-template>
-            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.nombre}}</span>
-        </md-item-template>
-        <md-not-found>
-            No se han encontrado resultados para "{{ctrl.searchText}}"
-            <a ng-click="ctrl.newMotto(ctrl.searchText)"></a>
-        </md-not-found>
-        </md-autocomplete>
         <div class="container">
             <div id="search-input" class="row">
                 <div class="col-xs-12">
-                    <input type="text" class="searchbox"/>
+                    <md-autocomplete
+                        ng-disabled="ctrl.isDisabled"
+                        md-no-cache="ctrl.noCache"
+                        md-selected-item="ctrl.selectedItem"
+                        md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+                        md-search-text="ctrl.searchText"
+                        md-selected-item-change="ctrl.selectedItemChange(item)"
+                        md-items="item in ctrl.items"
+                        md-item-text="item.nombre"
+                        md-min-length="0"
+                        placeholder="Empieza a escribir aquí la palabra que buscas..."
+                        md-select-on-match="true"
+                    <md-item-template>
+                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.nombre}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No se han encontrado resultados para "{{ctrl.searchText}}"
+                        <a ng-click="ctrl.newMotto(ctrl.searchText)"></a>
+                    </md-not-found>
+                    </md-autocomplete>
                 </div>
 
             </div>
@@ -36,13 +35,13 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-click='vm.searchByControl();' id="etymology" class="search-option-container switchable">Etimología</div>
-                    <div id="synonyms" class="search-option-container switchable">Sinónimos</div>
-                    <div id="antonyms" class="search-option-container switchable">Antónimos</div>
+                    <div ng-click='vm.filterEtimology()' id="etymology" class="search-option-container switchable">Etimología</div>
+                    <div ng-click='vm.filterSynonym()' id="synonyms" class="search-option-container switchable">Sinónimos</div>
+                    <div ng-click='vm.filterAntonym()' id="antonyms" class="search-option-container switchable">Antónimos</div>
                     <div class="dropdown-search-option search-option-container"> <span id="related-mottos" data-related-motto='1'>Con lemas relacionados</span>
                         <div class="dropdown-options hidden-dd"><span data-related-motto='1' class="related-motto-option">Sí</span><span data-related-motto='2' class="related-motto-option">No</span><span data-related-motto='3' class="related-motto-option">Por semejanza</span><span data-related-motto='4' class="related-motto-option">Por oposición</span></div>
                     </div>
-                    <div id="examples" class="search-option-container switchable">Ejemplos</div>
+                    <div ng-click='vm.filterExamples()' id="examples" class="search-option-container switchable">Ejemplos</div>
                     <div class="dropdown-search-option search-option-container"><span id="order-by" data-order-by='1'>Ordenación por popularidad</span>
                         <div class="dropdown-options hidden-dd"><span data-order-by='1' class="order-by-option">Ordenación por popularidad</span><span data-order-by='2' class="order-by-option">Ordenación normal</span></div>
                     </div>
@@ -69,9 +68,9 @@
                     <span class="search-results-etymology">{{ctrl.mottoDefinitions[0].motto.informacionEtimologica}}</span>
                     <div class="row">
                         <div id="cards-container" class="col-xs-12">
-                            <div ng-class='{closed:!$first}' ng-repeat="mottoDefinition in ctrl.mottoDefinitions track by mottoDefinition.id" class="card">
+                            <div ng-class='{closed:!$first}' ng-repeat="mottoDefinition in ctrl.mottoDefinitions | orderBy:'popularity'" class="card">
                                 <div class="card-entry-order-container">
-                                    <span class="card-entry-order">1</span>
+                                    <span class="card-entry-order">{{$index + 1}}</span>
                                     <span class="card-entry-upvote">
                                         <i class="fa fa-fw fa-chevron-up"></i>
                                     </span>
@@ -80,7 +79,7 @@
                                     </span>
                                 </div>
                                 <div class="card-definition-container">
-                                    <span class="card-etymology">
+                                    <span ng-show="vm.withEtymology" class="card-etymology">
                                         <span class="etymology-category">{{mottoDefinition.categoria}}<span>.</span></span>
                                         <span class="etymology-materia">{{mottoDefinition.materia}}<span>.</span></span>
                                         <span class="etymology-region">{{mottoDefinition.region}}<span>.</span></span>
@@ -88,12 +87,12 @@
                                     </span>
                                     <span class="card-definition">{{mottoDefinition.definition.definition}}</span>
                                     <hr/>
-                                    <span class="card-example">{{mottoDefinition.ejemplo}}</span>
+                                    <span ng-show="vm.withExamples" class="card-example">{{mottoDefinition.ejemplo}}</span>
                                     <span class="card-synonims-and-antonyms">
-                                        <span class="card-synonyms">
+                                        <span ng-show="vm.withSynonyms" class="card-synonyms">
                                             Sinónimos:<span ng-if="mottoDefinition.sinonimo.id !== undefined">{{mottoDefinition.sinonimo.motto.nombre}}</span><span ng-if="mottoDefinition.sinonimo.id === undefined" class="no-result">No hay sinónimos para este lema.</span>
                                         </span>
-                                        <span class="card-antonyms">
+                                        <span ng-show="vm.withAntonyms" class="card-antonyms">
                                             Antónimos:<span ng-if="mottoDefinition.antonimo.id !== undefined">{{mottoDefinition.antonimo.motto.nombre}}</span><span ng-if="mottoDefinition.antonimo.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                     </span>
@@ -107,6 +106,79 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="table-responsive">
+                                <table class="jh-table table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th><span>ID</span></th>
+                                        <th><span>Materia</span></th>
+                                        <th><span>Registro</span></th>
+                                        <th><span>Region</span></th>
+                                        <th><span>Ejemplo</span></th>
+                                        <th><span>Categoria</span></th>
+                                        <th><span>Popularity</span></th>
+                                        <th><span>Sinonimo</span></th>
+                                        <th><span>Antonimo</span></th>
+                                        <th><span>Lema Semejanza</span></th>
+                                        <th><span>Lema Oposicion</span></th>
+                                        <th><span>Motto</span></th>
+                                        <th><span>Definition</span></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="mottoDefinition in ctrl.mottoDefinitions track by mottoDefinition.id">
+                                        <td><a ui-sref="motto-definition-detail({id:mottoDefinition.id})">{{mottoDefinition.id}}</a></td>
+                                        <td>{{mottoDefinition.materia}}</td>
+                                        <td>{{mottoDefinition.registro}}</td>
+                                        <td>{{mottoDefinition.region}}</td>
+                                        <td>{{mottoDefinition.ejemplo}}</td>
+                                        <td>{{mottoDefinition.categoria}}</td>
+                                        <td>{{mottoDefinition.popularity}}</td>
+                                        <td>
+                                            <a ui-sref="motto-definition-detail({id:mottoDefinition.sinonimo.id})">{{mottoDefinition.sinonimo.id}}</a>
+                                        </td>
+                                        <td>
+                                            <a ui-sref="motto-definition-detail({id:mottoDefinition.antonimo.id})">{{mottoDefinition.antonimo.id}}</a>
+                                        </td>
+                                        <td>
+                                            <a ui-sref="motto-definition-detail({id:mottoDefinition.lemaSemejanza.id})">{{mottoDefinition.lemaSemejanza.id}}</a>
+                                        </td>
+                                        <td>
+                                            <a ui-sref="motto-definition-detail({id:mottoDefinition.lemaOposicion.id})">{{mottoDefinition.lemaOposicion.id}}</a>
+                                        </td>
+                                        <td>
+                                            <a ui-sref="motto-detail({id:mottoDefinition.motto.id})">{{mottoDefinition.motto.nombre}}</a>
+                                        </td>
+                                        <td>
+                                            <a ui-sref="definition-detail({id:mottoDefinition.definition.id})">{{mottoDefinition.definition.definition}}</a>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
+                                                <button type="submit"
+                                                        ui-sref="motto-definition-detail({id:mottoDefinition.id})"
+                                                        class="btn btn-info btn-sm">
+                                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                                    <span class="hidden-xs hidden-sm"></span>
+                                                </button>
+                                                <button type="submit"
+                                                        ui-sref="motto-definition.edit({id:mottoDefinition.id})"
+                                                        class="btn btn-primary btn-sm">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                    <span class="hidden-xs hidden-sm"></span>
+                                                </button>
+                                                <button type="submit"
+                                                        ui-sref="motto-definition.delete({id:mottoDefinition.id})"
+                                                        class="btn btn-danger btn-sm">
+                                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                                    <span class="hidden-xs hidden-sm"></span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,102 +189,5 @@
     </section>
 </section>
 <!-- ./ambito del controlador -->
-<div ng-controller="buscadorCtrl as ctrl" layout="column" ng-cloak>
-            <md-autocomplete
-                ng-disabled="ctrl.isDisabled"
-                md-no-cache="ctrl.noCache"
-                md-selected-item="ctrl.selectedItem"
-                md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
-                md-search-text="ctrl.searchText"
-                md-selected-item-change="ctrl.selectedItemChange(item)"
-                md-items="item in ctrl.items"
-                md-item-text="item.nombre"
-                md-min-length="0"
-                placeholder="Introduce la palabra a buscar"
-                md-select-on-match="true"
-                <md-item-template>
-                    <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.nombre}}</span>
-                </md-item-template>
-                <md-not-found>
-                    No se han encontrado resultados para "{{ctrl.searchText}}"
-                    <a ng-click="ctrl.newMotto(ctrl.searchText)"></a>
-                </md-not-found>
-            </md-autocomplete>
-            <br/>
-
-
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-            <tr>
-                <th><span>ID</span></th>
-                <th><span>Materia</span></th>
-                <th><span>Registro</span></th>
-                <th><span>Region</span></th>
-                <th><span>Ejemplo</span></th>
-                <th><span>Categoria</span></th>
-                <th><span>Popularity</span></th>
-                <th><span>Sinonimo</span></th>
-                <th><span>Antonimo</span></th>
-                <th><span>Lema Semejanza</span></th>
-                <th><span>Lema Oposicion</span></th>
-                <th><span>Motto</span></th>
-                <th><span>Definition</span></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="mottoDefinition in ctrl.mottoDefinitions track by mottoDefinition.id">
-                <td><a ui-sref="motto-definition-detail({id:mottoDefinition.id})">{{mottoDefinition.id}}</a></td>
-                <td>{{mottoDefinition.materia}}</td>
-                <td>{{mottoDefinition.registro}}</td>
-                <td>{{mottoDefinition.region}}</td>
-                <td>{{mottoDefinition.ejemplo}}</td>
-                <td>{{mottoDefinition.categoria}}</td>
-                <td>{{mottoDefinition.popularity}}</td>
-                <td>
-                    <a ui-sref="motto-definition-detail({id:mottoDefinition.sinonimo.id})">{{mottoDefinition.sinonimo.id}}</a>
-                </td>
-                <td>
-                    <a ui-sref="motto-definition-detail({id:mottoDefinition.antonimo.id})">{{mottoDefinition.antonimo.id}}</a>
-                </td>
-                <td>
-                    <a ui-sref="motto-definition-detail({id:mottoDefinition.lemaSemejanza.id})">{{mottoDefinition.lemaSemejanza.id}}</a>
-                </td>
-                <td>
-                    <a ui-sref="motto-definition-detail({id:mottoDefinition.lemaOposicion.id})">{{mottoDefinition.lemaOposicion.id}}</a>
-                </td>
-                <td>
-                    <a ui-sref="motto-detail({id:mottoDefinition.motto.id})">{{mottoDefinition.motto.nombre}}</a>
-                </td>
-                <td>
-                    <a ui-sref="definition-detail({id:mottoDefinition.definition.id})">{{mottoDefinition.definition.definition}}</a>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                ui-sref="motto-definition-detail({id:mottoDefinition.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                            <span class="hidden-xs hidden-sm"></span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="motto-definition.edit({id:mottoDefinition.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                            <span class="hidden-xs hidden-sm"></span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="motto-definition.delete({id:mottoDefinition.id})"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>
-                            <span class="hidden-xs hidden-sm"></span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
 
 </div>

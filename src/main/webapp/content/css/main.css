@@ -312,12 +312,19 @@ Social Buttons
 /* jhipster-needle-css-add-main JHipster will add new css style */
 
 /* ==========================================================================
-jHipster fixes
+Library fixes
 ========================================================================== */
 
 .navbar{
     margin: 0;
 }
+
+md-autocomplete{
+    height: 60px!important;
+    }
+    md-autocomplete-wrap{
+        height: 60px!important;
+        }
 
 /* Custom CSS */
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic);
@@ -652,13 +659,13 @@ section#simple-search .container .row#search-input div input {
     outline: none;
     background: transparent;
     border: none;
-    border-bottom: 1px solid #4a89dc;
-    color: white;
     font-family: 'Pt Serif', Serif;
     letter-spacing: 1px;
     font-weight: bold;
-    font-size: 60px;
-    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.24);
+    font-size: 20px;
+    color: #3e3e3e;
+    padding: 15px;
+    height: auto;
 }
 
 section#searchbox .container .row#search-options-container,
