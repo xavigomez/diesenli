@@ -38,8 +38,14 @@
                     <div ng-click='vm.filterEtimology()' id="etymology" class="search-option-container switchable">Etimología</div>
                     <div ng-click='vm.filterSynonym()' id="synonyms" class="search-option-container switchable">Sinónimos</div>
                     <div ng-click='vm.filterAntonym()' id="antonyms" class="search-option-container switchable">Antónimos</div>
-                    <div class="dropdown-search-option search-option-container"> <span id="related-mottos" data-related-motto='1'>Con lemas relacionados</span>
-                        <div class="dropdown-options hidden-dd"><span data-related-motto='1' class="related-motto-option">Sí</span><span data-related-motto='2' class="related-motto-option">No</span><span data-related-motto='3' class="related-motto-option">Por semejanza</span><span data-related-motto='4' class="related-motto-option">Por oposición</span></div>
+                    <div class="dropdown-search-option search-option-container">
+                        <span id="related-mottos" data-related-motto='1'>Con lemas relacionados</span>
+                        <div class="dropdown-options hidden-dd">
+                            <span ng-click='vm.filterRelateds(1)'  class="related-motto-option">Sí</span>
+                            <span ng-click='vm.filterRelateds(2)'  class="related-motto-option">No</span>
+                            <span ng-click='vm.filterRelateds(3)'  class="related-motto-option">Por semejanza</span>
+                            <span ng-click='vm.filterRelateds(4)'  class="related-motto-option">Por oposición</span>
+                        </div>
                     </div>
                     <div ng-click='vm.filterExamples()' id="examples" class="search-option-container switchable">Ejemplos</div>
                     <div class="dropdown-search-option search-option-container"><span id="order-by" data-order-by='1'>Ordenación por popularidad</span>
@@ -90,23 +96,25 @@
                                     <span ng-show="vm.withExamples" class="card-example">{{mottoDefinition.ejemplo}}</span>
                                     <span class="card-synonims-and-antonyms">
                                         <span ng-show="vm.withSynonyms" class="card-synonyms">
-                                            Sinónimos:<span ng-if="mottoDefinition.sinonimo.id !== undefined">{{mottoDefinition.sinonimo.motto.nombre}}</span><span ng-if="mottoDefinition.sinonimo.id === undefined" class="no-result">No hay sinónimos para este lema.</span>
+                                            Sinónimos:
+                                            <span ng-if="mottoDefinition.sinonimo.id !== undefined">{{mottoDefinition.sinonimo.motto.nombre}}</span>
+                                            <span ng-if="mottoDefinition.sinonimo.id === undefined" class="no-result">No hay sinónimos para este lema.</span>
                                         </span>
                                         <span ng-show="vm.withAntonyms" class="card-antonyms">
                                             Antónimos:<span ng-if="mottoDefinition.antonimo.id !== undefined">{{mottoDefinition.antonimo.motto.nombre}}</span><span ng-if="mottoDefinition.antonimo.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                     </span>
-                                    <span class="card-related-mottos">
-                                        <span class="card-relative">
+                                    <span ng-show='vm.relateds' class="card-related-mottos">
+                                        <span ng-switch='vm.similarity' class="card-relative">
                                             Por semejanza:<span ng-if="mottoDefinition.lemaSemejanza.id !== undefined">{{mottoDefinition.lemaSemejanza.motto.nombre}}</span><span ng-if="mottoDefinition.lemaSemejanza.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
-                                        <span class="card-oposition">
+                                        <span ng-show='vm.oposition' class="card-oposition">
                                             Por oposición:<span ng-if="mottoDefinition.lemaOposicion.id !== undefined">{{mottoDefinition.lemaOposicion.motto.nombre}}</span><span ng-if="mottoDefinition.lemaOposicion.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                     </span>
                                 </div>
                             </div>
-                            <div class="table-responsive">
+                            <div has-authority="ROLE_ADMIN" class="table-responsive">
                                 <table class="jh-table table table-striped">
                                     <thead>
                                     <tr>
