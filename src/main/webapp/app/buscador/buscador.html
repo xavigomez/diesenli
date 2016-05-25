@@ -105,7 +105,7 @@
                                         </span>
                                     </span>
                                     <span ng-show='vm.relateds' class="card-related-mottos">
-                                        <span ng-switch='vm.similarity' class="card-relative">
+                                        <span ng-show='vm.similarity' class="card-relative">
                                             Por semejanza:<span ng-if="mottoDefinition.lemaSemejanza.id !== undefined">{{mottoDefinition.lemaSemejanza.motto.nombre}}</span><span ng-if="mottoDefinition.lemaSemejanza.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                         <span ng-show='vm.oposition' class="card-oposition">

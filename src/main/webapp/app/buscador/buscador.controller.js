@@ -55,27 +55,21 @@
                     vm.relateds = true;
                     vm.oposition = true;
                     vm.similarity = true;
-                    console.log('vm.relateds = ' + vm.relateds);
                     break;
                 case 2:  $('#related-mottos').html('Sin lemas relacionados');
                     vm.relateds = false;
                     vm.oposition = true;
                     vm.similarity = true;
-                    console.log('vm.relateds = ' + vm.relateds);
                     break;
                 case 3:  $('#related-mottos').html('Lemas por semejanza');
                     (!vm.relateds)? vm.relateds = true:false;
                     vm.oposition = false;
                     vm.similarity = true;
-                    console.log('vm.similarity = ' + vm.similarity);
-                    console.log('vm.oposition = ' + vm.oposition);
                     break;
                 case 4:  $('#related-mottos').html('Lemas por oposición');
                     (!vm.relateds)? vm.relateds = true:false;
                     vm.oposition = true;
                     vm.similarity = false;
-                    console.log('vm.similarity = ' + vm.similarity);
-                    console.log('vm.oposition = ' + vm.oposition);
                     break;
                 default: console.log('order-by error');
             }
