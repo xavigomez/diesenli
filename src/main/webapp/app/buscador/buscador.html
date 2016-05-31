@@ -56,11 +56,41 @@
             </div>
         </div>
     </section>
-    <section id="advanced-search">
+    <section class='' id="advanced-search-contain">
         <div class="container">
             <div id="advanced-search-container" class="row">
-                <div class="col-xs-12 advanced-search">
-                    <p>aaa</p>
+                <div class="col-xs-3 advanced-search">
+                    <span class="advance-search-header">Categoría</span>
+                    <div class="advance-search-option-container">
+                        <span ng-click="vm.advancedSearchAdverbioControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchAdvervio]" class="advance-search-option">Adverbio</span>
+                        <span ng-click="vm.advancedSearchArticuloControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchArticulo]" class="advance-search-option">Artículo</span>
+                        <span ng-click="vm.advancedSearchAdjetivoControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchAdjetivo]" class="advance-search-option">Adjetivo</span>
+                        <span ng-click="vm.advancedSearchNombreControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchNombre]" class="advance-search-option">Nombre</span>
+                        <span ng-click="vm.advancedSearchVerboControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchVerbo]" class="advance-search-option">Verbo</span>
+                    </div>
+                </div>
+                <div class="col-xs-3 advanced-search">
+                    <span class="advance-search-header">Materia</span>
+                    <div class="advance-search-option-container">
+                        <span ng-click="vm.advancedSearchCineControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchCine]" class="advance-search-option">Cinematografía</span>
+                        <span ng-click="vm.advancedSearchTeatroControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchTeatro]" class="advance-search-option">Teatro</span>
+                        <span ng-click="vm.advancedSearchTelevisionControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchTelevision]" class="advance-search-option">Televisión</span>
+                    </div>
+                </div>
+                <div class="col-xs-3 advanced-search">
+                    <span class="advance-search-header">Región</span>
+                    <div class="advance-search-option-container">
+                        <span ng-click="vm.advancedSearchArgentinaControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchArgentina]" class="advance-search-option">Argentina</span>
+                        <span ng-click="vm.advancedSearchSalamancaControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchSalamanca]" class="advance-search-option">Salamanca</span>
+                        <span ng-click="vm.advancedSearchUruguayControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchUruguay]" class="advance-search-option">Uruguay</span>
+                    </div>
+                </div>
+                <div class="col-xs-3 advanced-search">
+                    <span class="advance-search-header">Nivel</span>
+                    <div class="advance-search-option-container">
+                        <span ng-click="vm.advancedSearchColoquialControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchColoquial]" class="advance-search-option">Coloquial</span>
+                        <span ng-click="vm.advancedSearchDesusoControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchDesuso]" class="advance-search-option">Desuso</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,15 +98,16 @@
     <section id="searchresults">
         <div class="container">
             <div class="row">
-                <div id="results-area" class="col-xs-12">
+                <div id="results-area" class="col-xs-8">
                     <span class="search-results-claim">Resultados de la búsqueda</span>
                     <span class="search-results-word">{{ctrl.mottoDefinitions[0].motto.nombre}}</span>
-                    <span class="search-results-etymology">{{ctrl.mottoDefinitions[0].motto.informacionEtimologica}}</span>
-                    <div class="row">
-                        <div id="cards-container" class="col-xs-12">
-                            <div ng-class='{closed:!$first}' ng-repeat="mottoDefinition in ctrl.mottoDefinitions | orderBy:'popularity'" class="card">
+                    <span ng-show="vm.withEtymology" class="search-results-etymology">{{ctrl.mottoDefinitions[0].motto.informacionEtimologica}}</span>
+                    <div id="cards-container" class="row">
+                        <div class="col-xs-12">
+                            <!--<div style="height: 1000px; background: red;margin-bottom: 40px;"></div>-->
+                            <div ng-class='{closed:!$first}' ng-repeat="mottoDefinition in ctrl.mottoDefinitions  | orderBy:'popularity'" class="card">
                                 <div class="card-entry-order-container">
-                                    <span class="card-entry-order">{{$index + 1}}</span>
+                                    <span class="card-entry-order">{{$index + 1}}.</span>
                                     <span class="card-entry-upvote">
                                         <i class="fa fa-fw fa-chevron-up"></i>
                                     </span>
@@ -85,11 +116,11 @@
                                     </span>
                                 </div>
                                 <div class="card-definition-container">
-                                    <span ng-show="vm.withEtymology" class="card-etymology">
-                                        <span class="etymology-category">{{mottoDefinition.categoria}}<span>.</span></span>
-                                        <span class="etymology-materia">{{mottoDefinition.materia}}<span>.</span></span>
-                                        <span class="etymology-region">{{mottoDefinition.region}}<span>.</span></span>
-                                        <span class="etymology-level">{{mottoDefinition.registro}}<span>.</span></span>
+                                    <span  class="card-etymology">
+                                        <span class="etymology-category">{{mottoDefinition.categoria}}</span>
+                                        <span class="etymology-materia">{{mottoDefinition.materia}}</span>
+                                        <span class="etymology-region">{{mottoDefinition.region}}</span>
+                                        <span class="etymology-level">{{mottoDefinition.registro}}</span>
                                     </span>
                                     <span class="card-definition">{{mottoDefinition.definition.definition}}</span>
                                     <hr/>
@@ -190,8 +221,11 @@
                         </div>
                     </div>
                 </div>
-                <!--.col-xs-4//.well
-                -->
+                <div class="col-xs-4">
+                    <div class="motto-list">
+                        <span ng-repeat="motto in ctrl.mottos | orderBy:'nombre'" class="motto-list-item" ng-click='ctrl.itemClicked(motto.id)'>{{motto.nombre}}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

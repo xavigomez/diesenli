@@ -26,6 +26,70 @@
         vm.oposition = true;
         vm.similarity = true;
 
+        vm.advancedSearchAdvervio = false;
+        vm.advancedSearchAdverbioControl = function(){
+            vm.advancedSearchAdvervio = !vm.advancedSearchAdvervio;
+        }
+
+        vm.advancedSearchArticulo = false;
+        vm.advancedSearchArticuloControl = function(){
+            vm.advancedSearchArticulo = !vm.advancedSearchArticulo;
+        }
+
+        vm.advancedSearchAdjetivo = false;
+        vm.advancedSearchAdjetivoControl = function(){
+            vm.advancedSearchAdjetivo = !vm.advancedSearchAdjetivo;
+        }
+
+        vm.advancedSearchNombre = false;
+        vm.advancedSearchNombreControl = function(){
+            vm.advancedSearchNombre = !vm.advancedSearchNombre;
+        }
+
+        vm.advancedSearchVerbo = false;
+        vm.advancedSearchVerboControl = function(){
+            vm.advancedSearchVerbo = !vm.advancedSearchVerbo;
+        }
+
+        vm.advancedSearchCine = false;
+        vm.advancedSearchCineControl = function(){
+            vm.advancedSearchCine = !vm.advancedSearchCine;
+        }
+
+        vm.advancedSearchTeatro = false;
+        vm.advancedSearchTeatroControl = function(){
+            vm.advancedSearchTeatro = !vm.advancedSearchTeatro;
+        }
+
+        vm.advancedSearchTelevision = false;
+        vm.advancedSearchTelevisionControl = function(){
+            vm.advancedSearchTelevision = !vm.advancedSearchTelevision;
+        }
+
+        vm.advancedSearchArgentina = false;
+        vm.advancedSearchArgentinaControl = function(){
+            vm.advancedSearchArgentina = !vm.advancedSearchArgentina;
+        }
+
+        vm.advancedSearchSalamanca = false;
+        vm.advancedSearchSalamancaControl = function(){
+            vm.advancedSearchSalamanca = !vm.advancedSearchSalamanca;
+        }
+
+        vm.advancedSearchUruguay = false;
+        vm.advancedSearchUruguayControl = function(){
+            vm.advancedSearchUruguay = !vm.advancedSearchUruguay;
+        }
+
+        vm.advancedSearchColoquial = false;
+        vm.advancedSearchColoquialControl = function(){
+            vm.advancedSearchColoquial = !vm.advancedSearchColoquial;
+        }
+
+        vm.advancedSearchDesuso = false;
+        vm.advancedSearchDesusoControl = function(){
+            vm.advancedSearchDesuso = !vm.advancedSearchDesuso;
+        }
 
         vm.filterEtimology = function(){
                 vm.withEtymology = !vm.withEtymology;
@@ -170,6 +234,22 @@
                     break;
             }
 
+        });
+
+        //Scroll Control
+        var cardBox = $('#cards-container'),
+            height = cardBox.height(),
+            scrollHeight = cardBox.get(0).scrollHeight;
+
+        console.log(cardBox);
+        console.log(height);
+        console.log(scrollHeight);
+
+        cardBox.bind('mousewheel', function(e, d) {
+            console.log(scrollHeight);
+            if((this.scrollTop === (scrollHeight - height) && d < 0) || (this.scrollTop === 0 && d > 0)) {
+                e.preventDefault();
+            }
         });
 
     }

@@ -16,7 +16,7 @@ public interface MottoRepository extends JpaRepository<Motto,Long> {
     @Query("select motto from Motto motto where motto.user.login = ?#{principal.username}")
     List<Motto> findByUserIsCurrentUser();
 
-    @Query("SELECT motto FROM Motto motto WHERE motto.nombre LIKE LOWER (CONCAT(:searchTerm,'%'))")
+    @Query("SELECT motto FROM Motto motto WHERE motto.nombre LIKE LOWER (CONCAT(:searchTerm,'%')) ORDER BY motto.nombre ASC")
     List<Motto> searchTerm(@Param("searchTerm") String searchTerm);
 
 

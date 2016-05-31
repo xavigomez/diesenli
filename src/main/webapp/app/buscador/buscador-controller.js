@@ -8,12 +8,23 @@
         self.isDisabled = false;
         self.querySearch = querySearch;
         self.selectedItemChange = selectedItemChange;
+        self.itemClicked = itemClicked;
         self.searchTextChange = searchTextChange;
         self.newState = newState;
 
         self.searchText="";
         self.items=[];
         self.mottoDefinitions=[];
+
+
+        self.mottos = [];
+        self.loadAll = function () {
+            Motto.query(function (result) {
+                self.mottos = result;
+            })
+        }
+
+        self.loadAll();
 
         function newState(state) {
             alert("La función no se ha implementado");
@@ -54,6 +65,12 @@
             return function filterFn(state) {
                 return (state.value.indexOf(lowercaseQuery) === 0);
             };
+        }
+
+        function itemClicked(mottoId){
+            MottoDefinition.selectedMottoId({selectedMottoId: mottoId}, function(result){
+                self.mottoDefinitions = result;
+            });
         }
     }
 })();
