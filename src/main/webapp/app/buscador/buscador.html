@@ -1,4 +1,4 @@
-<section ng-controller="buscadorCtrl as ctrl" >
+<section ng-controller="BuscadorController as ctrl" >
     <section id="searchbox">
         <div class="container">
             <div id="search-input" class="row">
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-click='vm.filterEtimology()' id="etymology" class="search-option-container switchable">Etimología</div>
+                    <div ng-click='vm.filterEtimology()' ng-class="{true: 'active', false: 'disabled'}[vm.filterEtimology]" id="etymology" class="search-option-container switchable">Etimología</div>
                     <div ng-click='vm.filterSynonym()' id="synonyms" class="search-option-container switchable">Sinónimos</div>
                     <div ng-click='vm.filterAntonym()' id="antonyms" class="search-option-container switchable">Antónimos</div>
                     <div class="dropdown-search-option search-option-container">
@@ -73,7 +73,7 @@
                 <div class="col-xs-3 advanced-search">
                     <span class="advance-search-header">Categoría</span>
                     <div class="advance-search-option-container">
-                        <span ng-click="vm.advancedSearchAdverbioControl(   )" ng-class="{true: 'active', false: ''}[vm.advancedSearchAdvervio]" class="advance-search-option">Adverbio</span>
+                        <span ng-click="vm.advancedSearchAdverbioControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchAdvervio]" class="advance-search-option">Adverbio</span>
                         <span ng-click="vm.advancedSearchArticuloControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchArticulo]" class="advance-search-option">Artículo</span>
                         <span ng-click="vm.advancedSearchAdjetivoControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchAdjetivo]" class="advance-search-option">Adjetivo</span>
                         <span ng-click="vm.advancedSearchNombreControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchNombre]" class="advance-search-option">Nombre</span>
@@ -118,7 +118,7 @@
                     <div id="cards-container" class="row">
                         <div class="col-xs-12">
                             <!--<div style="height: 1000px; background: red;margin-bottom: 40px;"></div>-->
-                            <div ng-class='{closed:!$first}' ng-repeat="mottoDefinition in ctrl.mottoDefinitions  | orderBy:'popularity'" class="card">
+                            <div ng-class='{closed:!$first}' ng-repeat="mottoDefinition in ctrl.mottoDefinitions | orderBy:'popularity'" class="card">
                                 <div class="card-entry-order-container">
                                     <span class="card-entry-order">{{$index + 1}}.</span>
                                     <span class="card-entry-upvote">
@@ -245,5 +245,49 @@
     <!-- END OF SEARCH RESULTS -->
 </section>
 <!-- ./ambito del controlador -->
+<script>
+    $('span.advanced-search-switch').click(function () {
+        $('.logged-user-options').toggleClass('open');
+    });
+    //Cards
+    var lastActiveCard = $( '#cards-container .card:first-child' );
+
+    $( '.card.closed' ).click(function(){
+        lastActiveCard.toggleClass( 'closed' );
+        console.log( $( this )  );
+        $( this ).toggleClass( 'closed' );
+        lastActiveCard = $( this );
+    });
+
+    //To open advanced options
+    $('span.advanced-search-switch').click(function(){
+        console.log('click');
+        $('i.advanced-options-switch').toggleClass('open-advanced-options');
+        $('section#advanced-search').toggleClass('open');
+    });
+
+    //Simple options switch
+    $('.search-options div.switchable').click(function(){
+        $(this).toggleClass('disabled');
+    });
+
+    $('.dropdown-search-option').click(function(){
+        $('.dropdown-options' ,this).toggleClass('hidden-dd');
+        $(this).toggleClass('raised');
+    });
+
+    $('.sub-dropdown-options').hover(function(){
+        $('.sub-dropdown-options-container.sub-one').toggleClass('hidden-dd');
+    });
+
+    $('.sub-dropdown-options-container.sub-one').hover(function(){
+        $(this).toggleClass('hidden-dd');
+        $('span.search-by-option.sub-dropdown-options').toggleClass('hover');
+    });
+
+    $('span.sub-dropdown-options-container').hover(function(){
+        $('.sub-dropdown-options-container', this).toggleClass('hidden-dd');
+    });
+</script>
 
 </div>

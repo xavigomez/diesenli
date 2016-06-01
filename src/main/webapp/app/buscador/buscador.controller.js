@@ -5,12 +5,17 @@
         .module('diesliApp')
         .controller('BuscadorController', BuscadorController);
 
-
-    BuscadorController.$inject = [];
-
-    function BuscadorController () {
+    function BuscadorController ( $timeout, $q, $log, Motto,MottoDefinition ) {
 
         var vm = this;
+
+        vm.simulateQuery = true;
+        vm.isDisabled = false;
+        vm.querySearch = querySearch;
+        vm.selectedItemChange = selectedItemChange;
+        vm.itemClicked = itemClicked;
+        vm.searchTextChange = searchTextChange;
+        vm.newState = newState;
 
         vm.searchBy = 1;
         vm.searchByControl = searchByControl;
@@ -166,48 +171,7 @@
             }
         }
 
-        $('span.advanced-search-switch').click(function () {
-            $('.logged-user-options').toggleClass('open');
-        });
-        //Cards
-        var lastActiveCard = $( '#cards-container .card:first-child' );
 
-        $( '.card.closed' ).click(function(){
-            lastActiveCard.toggleClass( 'closed' );
-            console.log( $( this )  );
-            $( this ).toggleClass( 'closed' );
-            lastActiveCard = $( this );
-        });
-
-        //To open advanced options
-        $('span.advanced-search-switch').click(function(){
-            console.log('click');
-            $('i.advanced-options-switch').toggleClass('open-advanced-options');
-            $('section#advanced-search').toggleClass('open');
-        });
-
-        //Simple options switch
-        $('.search-options div.switchable').click(function(){
-            $(this).toggleClass('disabled');
-        });
-
-        $('.dropdown-search-option').click(function(){
-            $('.dropdown-options' ,this).toggleClass('hidden-dd');
-            $(this).toggleClass('raised');
-        });
-
-        $('.sub-dropdown-options').hover(function(){
-            $('.sub-dropdown-options-container.sub-one').toggleClass('hidden-dd');
-        });
-
-        $('.sub-dropdown-options-container.sub-one').hover(function(){
-            $(this).toggleClass('hidden-dd');
-            $('span.search-by-option.sub-dropdown-options').toggleClass('hover');
-        });
-
-        $('span.sub-dropdown-options-container').hover(function(){
-            $('.sub-dropdown-options-container', this).toggleClass('hidden-dd');
-        });
 
         //recogemos el tipo de búsqueda
         function searchByControl(searchByOptionControl){
@@ -254,6 +218,78 @@
             }
 
         });
+
+        /****************************
+        CONTROLLER DE FERRÁN
+        *****************************/
+        vm.simulateQuery = true;
+        vm.isDisabled = false;
+        vm.querySearch = querySearch;
+        vm.selectedItemChange = selectedItemChange;
+        vm.itemClicked = itemClicked;
+        vm.searchTextChange = searchTextChange;
+        vm.newState = newState;
+
+        vm.searchText="";
+        vm.items=[];
+        vm.mottoDefinitions=[];
+
+
+        vm.mottos = [];
+        vm.loadAll = function () {
+            Motto.query(function (result) {
+                vm.mottos = result;
+            })
+        }
+
+        vm.loadAll();
+
+        function newState(state) {
+            alert("La función no se ha implementado");
+        }
+
+        function querySearch(query) {
+            var results = query ? vm.states.filter(createFilterFor(query)) : vm.states, deferred;
+            if (vm.simulateQuery) {
+                deferred = $q.defer();
+                $timeout(function () {
+                    deferred.resolve(results);
+                },
+                    Math.random() * 1000, false);
+                return deferred.promise;
+            } else {
+                return results;
+            }
+        }
+
+        function searchTextChange(text) {
+            $log.info('Text changed to ' + text);
+            Motto.searchTerm({searchTerm: text}, function(result){
+                    vm.items=result;
+                }
+            );
+        }
+
+        function selectedItemChange(item) {
+            $log.info('Item changed to ' + JSON.stringify(item.id));
+            MottoDefinition.selectedMottoId({selectedMottoId: item.id}, function (result){
+                vm.mottoDefinitions=result;
+            });
+        }
+
+        //filter function for search query
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+            return function filterFn(state) {
+                return (state.value.indexOf(lowercaseQuery) === 0);
+            };
+        }
+
+        function itemClicked(mottoId){
+            MottoDefinition.selectedMottoId({selectedMottoId: mottoId}, function(result){
+                vm.mottoDefinitions = result;
+            });
+        }
 
         //Scroll Control
         var cardBox = $('#cards-container'),
