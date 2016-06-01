@@ -13,6 +13,7 @@
         var vm = this;
 
         vm.searchBy = 1;
+        vm.searchByControl = searchByControl;
 
         vm.withSynonyms = true;
         vm.withAntonyms = true;
@@ -191,12 +192,12 @@
         });
 
         //recogemos el tipo de búsqueda
-        $('.search-by-option').click(function(){
-            $('span#search-by').data('search-by', $(this).data('search-by').toString());
+        function searchByControl(searchByOptionControl){
 
-            var searchBy = parseInt($('#search-by').data('search-by'));
+            vm.searchBy = searchByOptionControl;
+            console.log(vm.searchBy);
 
-            switch(searchBy){
+            switch(vm.searchBy){
                 case 1:
                     $('#search-by').html('Por forma');
                     break;
@@ -219,7 +220,7 @@
                 default: console.log('search-by error');
             }
 
-        });
+        }
 
         //Recogemos el data del tipo de ordenación
         $('.order-by-option').click(function(){

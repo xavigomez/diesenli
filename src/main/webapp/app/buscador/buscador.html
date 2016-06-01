@@ -28,9 +28,19 @@
             </div>
             <div id="search-options-container" class="row">
                 <div class="col-xs-12 search-options">
-                    <div class="dropdown-search-option search-option-container"><span id="search-by" data-search-by='2'> Por palabra</span>
-                        <div class="fd dropdown-options hidden-dd"><span data-search-by='2' class="search-by-option">Por palabra</span><span data-search-by='3' class="search-by-option sub-dropdown-options">Por lema</span>
-                            <div class="sub-dropdown-options-container sub-one hidden-dd"><span data-search-by='3' class="search-by-option">Exacto</span><span data-search-by='4' class="search-by-option">Empieza por</span><span data-search-by='5' class="search-by-option">Acaba en</span><span data-search-by='6' class="search-by-option">Contiene</span><span data-search-by='7' class="search-by-option">No empieza por</span><span data-search-by='8' class="search-by-option">No acaba en</span><span data-search-by='9' class="search-by-option">No contiene</span>
+                    <div class="dropdown-search-option search-option-container">
+                        <span id="search-by">Por palabra</span>
+                        <div class="fd dropdown-options hidden-dd">
+                            <span ng-click='vm.searchByControl(1)' class="search-by-option">Por palabra</span>
+                            <span ng-click='vm.searchByControl(2)' class="search-by-option sub-dropdown-options">Por lema</span>
+                            <div class="sub-dropdown-options-container sub-one hidden-dd">
+                                <span ng-click='vm.searchByControl(2)' class="search-by-option">Exacto</span>
+                                <span ng-click='vm.searchByControl(3)' class="search-by-option">Empieza por</span>
+                                <span ng-click='vm.searchByControl(4)' class="search-by-option">Acaba en</span>
+                                <span ng-click='vm.searchByControl(5)'class="search-by-option">Contiene</span>
+                                <span ng-click='vm.searchByControl(6)' class="search-by-option">No empieza por</span>
+                                <span ng-click='vm.searchByControl(7)' class="search-by-option">No acaba en</span>
+                                <span ng-click='vm.searchByControl(8)' class="search-by-option">No contiene</span>
                                 <!--span(data-search-by = 10).search-by-option Este no lo leo-->
                             </div>
                         </div>
