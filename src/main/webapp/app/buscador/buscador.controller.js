@@ -23,6 +23,11 @@
         vm.orderedBy = true;
         vm.withRelateds = true;
 
+        vm.advancedSearchCategory = [false, false, false, false, false];
+        vm.advancedSearchMateria = [false, false, false];
+        vm.advancedSearchRegion = [false, false, false];
+        vm.advancedSearchLevel = [false, false];
+
         vm.relateds = true;
         vm.oposition = true;
         vm.similarity = true;
@@ -30,66 +35,79 @@
         vm.advancedSearchAdvervio = false;
         vm.advancedSearchAdverbioControl = function(){
             vm.advancedSearchAdvervio = !vm.advancedSearchAdvervio;
+            vm.advancedSearchCategory[0] = vm.advancedSearchAdvervio;
         }
 
         vm.advancedSearchArticulo = false;
         vm.advancedSearchArticuloControl = function(){
             vm.advancedSearchArticulo = !vm.advancedSearchArticulo;
+            vm.advancedSearchCategory[1] = vm.advancedSearchArticulo;
         }
 
         vm.advancedSearchAdjetivo = false;
         vm.advancedSearchAdjetivoControl = function(){
             vm.advancedSearchAdjetivo = !vm.advancedSearchAdjetivo;
+            vm.advancedSearchCategory[2] = vm.advancedSearchAdjetivo;
         }
 
         vm.advancedSearchNombre = false;
         vm.advancedSearchNombreControl = function(){
             vm.advancedSearchNombre = !vm.advancedSearchNombre;
+            vm.advancedSearchCategory[3] = vm.advancedSearchNombre;
         }
 
         vm.advancedSearchVerbo = false;
         vm.advancedSearchVerboControl = function(){
             vm.advancedSearchVerbo = !vm.advancedSearchVerbo;
+            vm.advancedSearchCategory[4] = vm.advancedSearchVerbo;
         }
 
         vm.advancedSearchCine = false;
         vm.advancedSearchCineControl = function(){
             vm.advancedSearchCine = !vm.advancedSearchCine;
+            vm.advancedSearchMateria[0] = vm.advancedSearchCine;
         }
 
         vm.advancedSearchTeatro = false;
         vm.advancedSearchTeatroControl = function(){
             vm.advancedSearchTeatro = !vm.advancedSearchTeatro;
+            vm.advancedSearchMateria[1] = vm.advancedSearchTeatro;
         }
 
         vm.advancedSearchTelevision = false;
         vm.advancedSearchTelevisionControl = function(){
             vm.advancedSearchTelevision = !vm.advancedSearchTelevision;
+            vm.advancedSearchMateria[2] = vm.advancedSearchTeatro;
         }
 
         vm.advancedSearchArgentina = false;
         vm.advancedSearchArgentinaControl = function(){
             vm.advancedSearchArgentina = !vm.advancedSearchArgentina;
+            vm.advancedSearchRegion[0] = vm.advancedSearchArgentina;
         }
 
         vm.advancedSearchSalamanca = false;
         vm.advancedSearchSalamancaControl = function(){
             vm.advancedSearchSalamanca = !vm.advancedSearchSalamanca;
+            vm.advancedSearchRegion[1] = vm.advancedSearchSalamanca;
         }
 
         vm.advancedSearchUruguay = false;
         vm.advancedSearchUruguayControl = function(){
             vm.advancedSearchUruguay = !vm.advancedSearchUruguay;
+            vm.advancedSearchRegion[2] = vm.advancedSearchUruguay;
         }
 
         vm.advancedSearchColoquial = false;
         vm.advancedSearchColoquialControl = function(){
             vm.advancedSearchColoquial = !vm.advancedSearchColoquial;
+            vm.advancedSearchLevel[0] = vm.advancedSearchColoquial;
         }
 
         vm.advancedSearchDesuso = false;
         vm.advancedSearchDesusoControl = function(){
             vm.advancedSearchDesuso = !vm.advancedSearchDesuso;
+            vm.advancedSearchLevel[1] = vm.advancedSearchColoquial;
         }
 
         vm.filterEtimology = function(){
