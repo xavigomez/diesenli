@@ -141,7 +141,57 @@ public class MottoDefinitionResource {
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    
+
+    // GET  /motto-definitions/byfilters : get "MottoDefinition" criteria to create the advanced search
+    // * @return the ResponseEntity with status 200 (OK) and with body the mottoDefinition, or with status 404 (Not Found)
+
+    @RequestMapping(value = "/motto-definitions/byfilters",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    @Transactional
+    public ResponseEntity<List<MottoDefinition>> getMottoDefinitionByParams(
+        @RequestParam(value = "searchTerm", required = true) String searchTerm,
+        @RequestParam(value = "searchBy", required = false) Integer searchBy,
+        @RequestParam(value = "categorias", required = false) String categorias,
+        @RequestParam(value = "materias", required = false) String materias,
+        @RequestParam(value = "regiones", required = false) String regiones,
+        @RequestParam(value = "registros", required = false) String registros
+    ) {
+        Map<String, Object> params = new HashMap<>();
+
+        params.put("searchTerm", searchTerm);
+
+        if (searchBy != null) {
+            params.put("searchBy", searchBy);
+        }
+
+        if (categorias != null) {
+            String[] categoriasSplit = categorias.split("-");
+            params.put("categorias", categoriasSplit);
+        }
+
+        if (materias != null) {
+            String[] materiasSplit = materias.split("-");
+            params.put("materias", materiasSplit);
+        }
+
+        if (regiones != null) {
+            String[] regionesSplit = regiones.split("-");
+            params.put("regiones", regionesSplit);
+        }
+
+        if (registros != null) {
+            String[] registrosSplit = registros.split("-");
+            params.put("registros", registrosSplit);
+        }
+
+        List<MottoDefinition> result = mottoDefinitionCriteriaRepository.filterMottoDefinitions(params);
+
+        return new ResponseEntity<>(
+            result,
+            HttpStatus.OK);
+    }
 
     /**
      * DELETE  /motto-definitions/:id : delete the "id" mottoDefinition.

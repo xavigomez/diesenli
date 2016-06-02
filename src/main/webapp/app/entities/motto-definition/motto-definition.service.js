@@ -18,6 +18,11 @@
                     return data;
                 }
             },
+            'byFilters': {
+                method: 'GET',
+                isArray: true,
+                url: 'api/motto-definitions/byfilters'
+            },
             'update': {method: 'PUT'},
             'selectedMottoId': {
                 method: 'GET', isArray: true, url: 'api/motto-definitions/search/:selectedMottoId',

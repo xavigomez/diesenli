@@ -94,13 +94,13 @@ public class MottoDefinitionCriteriaRepository {
         }
     }
     private void filterByMateria(Map<String, Object> parameters, Criteria mottoDefinitionCriteria) {
-        if (parameters.containsKey("categorias")) {
+        if (parameters.containsKey("materias")) {
             String[] materias = (String[]) parameters.get("materias");
             mottoDefinitionCriteria.add(Restrictions.in("materia", materias));
         }
     }
     private void filterByRegion(Map<String, Object> parameters, Criteria mottoDefinitionCriteria) {
-        if (parameters.containsKey("categorias")) {
+        if (parameters.containsKey("regiones")) {
             String[] regiones = (String[]) parameters.get("regiones");
             mottoDefinitionCriteria.add(Restrictions.in("region", regiones));
         }

@@ -14,9 +14,9 @@
         vm.advancedSearch = function(
             searchText,
             searchBy,
-            advancedSearchCategory,
+            /*advancedSearchCategory,
             advancedSearchMateria,
-            advancedSearchRegion,
+            advancedSearchRegion,*/
             advancedSearchLevel
         ) {
 
@@ -44,18 +44,19 @@
 
             advancedSearchRegion.clean(null);
             console.log(advancedSearchRegion);
-            var regionStr = advancedSearchRegion.join("-");
+            var regionStr = advancedSearchRegion.join("-");*/
 
             advancedSearchLevel.clean(null);
             console.log(advancedSearchLevel);
             var levelStr = advancedSearchLevel.join("-");
 
 
-            console.log(categoryStr + '\n&' + materiaStr + '\n&' + regionStr + '\n&' + levelStr);*/
 
-            Motto.byFilters({
+
+                MottoDefinition.byFilters({
                 searchTerm: searchText,
-                searchBy: searchBy
+                searchBy: searchBy,
+                registros: levelStr
                 },
                 function(result){
                     vm.penes = result;
@@ -195,7 +196,7 @@
         vm.advancedSearchDesusoControl = function(){
             vm.advancedSearchDesuso = !vm.advancedSearchDesuso;
             (vm.advancedSearchDesuso)?
-                vm.advancedSearchLevel[1]='desuso':
+                vm.advancedSearchLevel[1]='desus.':
                 vm.advancedSearchLevel[1] = null;
         }
 
