@@ -28,10 +28,10 @@
         vm.orderedBy = true;
         vm.withRelateds = true;
 
-        vm.advancedSearchCategory = [false, false, false, false, false];
-        vm.advancedSearchMateria = [false, false, false];
-        vm.advancedSearchRegion = [false, false, false];
-        vm.advancedSearchLevel = [false, false];
+        vm.advancedSearchCategory = [null, null, null, null, null];
+        vm.advancedSearchMateria = [null, null, null];
+        vm.advancedSearchRegion = [null, null, null];
+        vm.advancedSearchLevel = [null, null];
 
         vm.relateds = true;
         vm.oposition = true;
@@ -40,79 +40,105 @@
         vm.advancedSearchAdvervio = false;
         vm.advancedSearchAdverbioControl = function(){
             vm.advancedSearchAdvervio = !vm.advancedSearchAdvervio;
-            vm.advancedSearchCategory[0] = vm.advancedSearchAdvervio;
+            (vm.advancedSearchAdvervio)?
+                vm.advancedSearchCategory[0]='adverbio':
+                vm.advancedSearchCategory[0] = null;
         }
 
         vm.advancedSearchArticulo = false;
         vm.advancedSearchArticuloControl = function(){
             vm.advancedSearchArticulo = !vm.advancedSearchArticulo;
-            vm.advancedSearchCategory[1] = vm.advancedSearchArticulo;
+            (vm.advancedSearchArticulo)?
+                vm.advancedSearchCategory[1]='articulo':
+                vm.advancedSearchCategory[1] = null;
         }
 
         vm.advancedSearchAdjetivo = false;
         vm.advancedSearchAdjetivoControl = function(){
             vm.advancedSearchAdjetivo = !vm.advancedSearchAdjetivo;
-            vm.advancedSearchCategory[2] = vm.advancedSearchAdjetivo;
+            (vm.advancedSearchAdjetivo)?
+                vm.advancedSearchCategory[2]='adjetivo':
+                vm.advancedSearchCategory[2] = null;
         }
 
         vm.advancedSearchNombre = false;
         vm.advancedSearchNombreControl = function(){
             vm.advancedSearchNombre = !vm.advancedSearchNombre;
-            vm.advancedSearchCategory[3] = vm.advancedSearchNombre;
+            (vm.advancedSearchNombre)?
+                vm.advancedSearchCategory[3]='nombre':
+                vm.advancedSearchCategory[3] = null;
         }
 
         vm.advancedSearchVerbo = false;
         vm.advancedSearchVerboControl = function(){
             vm.advancedSearchVerbo = !vm.advancedSearchVerbo;
-            vm.advancedSearchCategory[4] = vm.advancedSearchVerbo;
+            (vm.advancedSearchNombre)?
+                vm.advancedSearchCategory[4]='verbo':
+                vm.advancedSearchCategory[4] = null;
         }
 
         vm.advancedSearchCine = false;
         vm.advancedSearchCineControl = function(){
             vm.advancedSearchCine = !vm.advancedSearchCine;
-            vm.advancedSearchMateria[0] = vm.advancedSearchCine;
+            (vm.advancedSearchCine)?
+                vm.advancedSearchMateria[0]='cine':
+                vm.advancedSearchMateria[0] = null;
         }
 
         vm.advancedSearchTeatro = false;
         vm.advancedSearchTeatroControl = function(){
             vm.advancedSearchTeatro = !vm.advancedSearchTeatro;
-            vm.advancedSearchMateria[1] = vm.advancedSearchTeatro;
+            (vm.advancedSearchTeatro)?
+                vm.advancedSearchMateria[1]='teatro':
+                vm.advancedSearchMateria[1] = null;
         }
 
         vm.advancedSearchTelevision = false;
         vm.advancedSearchTelevisionControl = function(){
             vm.advancedSearchTelevision = !vm.advancedSearchTelevision;
-            vm.advancedSearchMateria[2] = vm.advancedSearchTeatro;
+            (vm.advancedSearchTelevision)?
+                vm.advancedSearchMateria[2]='television':
+                vm.advancedSearchMateria[2] = null;
         }
 
         vm.advancedSearchArgentina = false;
         vm.advancedSearchArgentinaControl = function(){
             vm.advancedSearchArgentina = !vm.advancedSearchArgentina;
-            vm.advancedSearchRegion[0] = vm.advancedSearchArgentina;
+            (vm.advancedSearchArgentina)?
+                vm.advancedSearchRegion[0]='argentina':
+                vm.advancedSearchRegion[0] = null;
         }
 
         vm.advancedSearchSalamanca = false;
         vm.advancedSearchSalamancaControl = function(){
             vm.advancedSearchSalamanca = !vm.advancedSearchSalamanca;
-            vm.advancedSearchRegion[1] = vm.advancedSearchSalamanca;
+            (vm.advancedSearchSalamanca)?
+                vm.advancedSearchRegion[1]='salamanca':
+                vm.advancedSearchRegion[1] = null;
         }
 
         vm.advancedSearchUruguay = false;
         vm.advancedSearchUruguayControl = function(){
             vm.advancedSearchUruguay = !vm.advancedSearchUruguay;
-            vm.advancedSearchRegion[2] = vm.advancedSearchUruguay;
+            (vm.advancedSearchUruguay)?
+                vm.advancedSearchRegion[2]='uruguay':
+                vm.advancedSearchRegion[2] = null;
         }
 
         vm.advancedSearchColoquial = false;
         vm.advancedSearchColoquialControl = function(){
             vm.advancedSearchColoquial = !vm.advancedSearchColoquial;
-            vm.advancedSearchLevel[0] = vm.advancedSearchColoquial;
+            (vm.advancedSearchColoquial)?
+                vm.advancedSearchLevel[0]='coloquial':
+                vm.advancedSearchLevel[0] = null;
         }
 
         vm.advancedSearchDesuso = false;
         vm.advancedSearchDesusoControl = function(){
             vm.advancedSearchDesuso = !vm.advancedSearchDesuso;
-            vm.advancedSearchLevel[1] = vm.advancedSearchColoquial;
+            (vm.advancedSearchDesuso)?
+                vm.advancedSearchLevel[1]='desuso':
+                vm.advancedSearchLevel[1] = null;
         }
 
         vm.filterEtimology = function(){
@@ -270,12 +296,12 @@
             );
         }
 
-        function selectedItemChange(item) {
+        /*function selectedItemChange(item) {
             $log.info('Item changed to ' + JSON.stringify(item.id));
             MottoDefinition.selectedMottoId({selectedMottoId: item.id}, function (result){
                 vm.mottoDefinitions=result;
             });
-        }
+        }*/
 
         //filter function for search query
         function createFilterFor(query) {
@@ -283,6 +309,62 @@
             return function filterFn(state) {
                 return (state.value.indexOf(lowercaseQuery) === 0);
             };
+        }
+
+        function selectedItemChange(
+            item,
+            searchBy,
+            advancedSearchCategory,
+            advancedSearchMateria,
+            advancedSearchRegion,
+            advancedSearchLevel
+        ) {
+
+            //Función para limpiar arrays
+            Array.prototype.clean = function(deleteValue) {
+                for (var i = 0; i < this.length; i++) {
+                    if (this[i] == deleteValue) {
+                        this.splice(i, 1);
+                        i--;
+                    }
+                }
+                return this;
+            };
+
+            //logica para montar los arrays;
+            advancedSearchCategory.clean(null);
+            console.log(advancedSearchCategory);
+            var categoryStr = advancedSearchCategory.join("-");
+
+            advancedSearchMateria.clean(null);
+            console.log(advancedSearchMateria);
+            var materiaStr = advancedSearchMateria.join("-");
+
+            advancedSearchRegion.clean(null);
+            console.log(advancedSearchRegion);
+            var regionStr = advancedSearchRegion.join("-");
+
+            advancedSearchLevel.clean(null);
+            console.log(advancedSearchLevel);
+            var levelStr = advancedSearchLevel.join("-");
+
+
+            console.log(categoryStr + '\n&' + materiaStr + '\n&' + regionStr + '\n&' + levelStr);
+
+
+
+
+            MottoDefinition.selectedMottoId({
+                    selectedMottoId: item.id,
+                    searchby: searchBy,
+                    searchCategory: categoryStr,
+                    searchMateria: materiaStr,
+                    searchRegion: regionStr,
+                    searchLevel: levelStr
+                },
+                function (result){
+                    vm.mottoDefinitions=result;
+                });
         }
 
         function itemClicked(mottoId){
