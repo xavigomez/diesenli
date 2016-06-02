@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.codegoons.diesli.domain.Motto;
 import com.codegoons.diesli.domain.MottoDefinition;
 import com.codegoons.diesli.repository.MottoDefinitionRepository;
+import com.codegoons.diesli.repository.MottoDefinitionCriteriaRepository;
 import com.codegoons.diesli.web.rest.util.HeaderUtil;
 import com.codegoons.diesli.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -14,12 +15,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 import javax.inject.Inject;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -33,6 +38,8 @@ public class MottoDefinitionResource {
 
     @Inject
     private MottoDefinitionRepository mottoDefinitionRepository;
+    @Inject
+    private MottoDefinitionCriteriaRepository mottoDefinitionCriteriaRepository;
 
     /**
      * POST  /motto-definitions : Create a new mottoDefinition.
@@ -120,12 +127,12 @@ public class MottoDefinitionResource {
      *
      * @param selectedMottoId the id of the mottoDefinition to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the mottoDefinition, or with status 404 (Not Found)
-*/
+     */
     @RequestMapping(value = "/motto-definitions/search/{selectedMottoId}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity <List<MottoDefinition>> selectedMottoId(@PathVariable Long selectedMottoId) {
+    public ResponseEntity<List<MottoDefinition>> selectedMottoId(@PathVariable Long selectedMottoId) {
         log.debug("REST request to get MottoDefinition which id is : {}", selectedMottoId);
         List<MottoDefinition> mottoDefinitions = mottoDefinitionRepository.selectedMottoId(selectedMottoId);
         return Optional.ofNullable(mottoDefinitions)
@@ -134,6 +141,7 @@ public class MottoDefinitionResource {
                 HttpStatus.OK))
             .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
 
     /**
      * DELETE  /motto-definitions/:id : delete the "id" mottoDefinition.

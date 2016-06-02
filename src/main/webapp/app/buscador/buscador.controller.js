@@ -9,6 +9,64 @@
 
         var vm = this;
 
+        vm.penes = [];
+
+        vm.advancedSearch = function(
+            searchText,
+            searchBy,
+            advancedSearchCategory,
+            advancedSearchMateria,
+            advancedSearchRegion,
+            advancedSearchLevel
+        ) {
+
+
+            console.log('searchText: ' + searchText + '\nsearchBy = ' + searchBy);
+            //Función para limpiar arrays
+            Array.prototype.clean = function(deleteValue) {
+                for (var i = 0; i < this.length; i++) {
+                    if (this[i] == deleteValue) {
+                        this.splice(i, 1);
+                        i--;
+                    }
+                }
+                return this;
+            };
+
+            //logica para montar los arrays;
+            /*advancedSearchCategory.clean(null);
+            console.log(advancedSearchCategory);
+            var categoryStr = advancedSearchCategory.join("-");
+
+            advancedSearchMateria.clean(null);
+            console.log(advancedSearchMateria);
+            var materiaStr = advancedSearchMateria.join("-");
+
+            advancedSearchRegion.clean(null);
+            console.log(advancedSearchRegion);
+            var regionStr = advancedSearchRegion.join("-");
+
+            advancedSearchLevel.clean(null);
+            console.log(advancedSearchLevel);
+            var levelStr = advancedSearchLevel.join("-");
+
+
+            console.log(categoryStr + '\n&' + materiaStr + '\n&' + regionStr + '\n&' + levelStr);*/
+
+            Motto.byFilters({
+                searchTerm: searchText,
+                searchBy: searchBy
+                },
+                function(result){
+                    vm.penes = result;
+                }
+            );
+
+        }
+
+
+        vm.isAdvanced = true;
+
         vm.simulateQuery = true;
         vm.isDisabled = false;
         vm.querySearch = querySearch;
@@ -142,19 +200,19 @@
         }
 
         vm.filterEtimology = function(){
-                vm.withEtymology = !vm.withEtymology;
+            vm.withEtymology = !vm.withEtymology;
         }
 
         vm.filterSynonym = function(){
-                vm.withSynonyms = !vm.withSynonyms;
+            vm.withSynonyms = !vm.withSynonyms;
         }
 
         vm.filterAntonym = function(){
-                vm.withAntonyms = !vm.withAntonyms;
+            vm.withAntonyms = !vm.withAntonyms;
         }
 
         vm.filterExamples = function(){
-                vm.withExamples = !vm.withExamples;
+            vm.withExamples = !vm.withExamples;
         }
 
         vm.filterRelateds = function(option){
@@ -246,8 +304,8 @@
         });
 
         /****************************
-        CONTROLLER DE FERRÁN
-        *****************************/
+         CONTROLLER DE FERRÁN
+         *****************************/
         vm.simulateQuery = true;
         vm.isDisabled = false;
         vm.querySearch = querySearch;
@@ -297,11 +355,11 @@
         }
 
         /*function selectedItemChange(item) {
-            $log.info('Item changed to ' + JSON.stringify(item.id));
-            MottoDefinition.selectedMottoId({selectedMottoId: item.id}, function (result){
-                vm.mottoDefinitions=result;
-            });
-        }*/
+         $log.info('Item changed to ' + JSON.stringify(item.id));
+         MottoDefinition.selectedMottoId({selectedMottoId: item.id}, function (result){
+         vm.mottoDefinitions=result;
+         });
+         }*/
 
         //filter function for search query
         function createFilterFor(query) {
@@ -311,60 +369,16 @@
             };
         }
 
-        function selectedItemChange(
-            item,
-            searchBy,
-            advancedSearchCategory,
-            advancedSearchMateria,
-            advancedSearchRegion,
-            advancedSearchLevel
-        ) {
-
-            //Función para limpiar arrays
-            Array.prototype.clean = function(deleteValue) {
-                for (var i = 0; i < this.length; i++) {
-                    if (this[i] == deleteValue) {
-                        this.splice(i, 1);
-                        i--;
-                    }
-                }
-                return this;
-            };
-
-            //logica para montar los arrays;
-            advancedSearchCategory.clean(null);
-            console.log(advancedSearchCategory);
-            var categoryStr = advancedSearchCategory.join("-");
-
-            advancedSearchMateria.clean(null);
-            console.log(advancedSearchMateria);
-            var materiaStr = advancedSearchMateria.join("-");
-
-            advancedSearchRegion.clean(null);
-            console.log(advancedSearchRegion);
-            var regionStr = advancedSearchRegion.join("-");
-
-            advancedSearchLevel.clean(null);
-            console.log(advancedSearchLevel);
-            var levelStr = advancedSearchLevel.join("-");
-
-
-            console.log(categoryStr + '\n&' + materiaStr + '\n&' + regionStr + '\n&' + levelStr);
-
-
+        function selectedItemChange( item ){
 
 
             MottoDefinition.selectedMottoId({
-                    selectedMottoId: item.id,
-                    searchby: searchBy,
-                    searchCategory: categoryStr,
-                    searchMateria: materiaStr,
-                    searchRegion: regionStr,
-                    searchLevel: levelStr
+                    selectedMottoId: item.id
                 },
                 function (result){
                     vm.mottoDefinitions=result;
                 });
+
         }
 
         function itemClicked(mottoId){

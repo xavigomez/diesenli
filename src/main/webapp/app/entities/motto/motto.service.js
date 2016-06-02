@@ -19,7 +19,11 @@
                 }
             },
             'update': { method:'PUT' },
-            
+            'byFilters': {
+                method: 'GET',
+                isArray: true,
+                url: 'api/motto/byfilters'
+            },
             'searchTerm': {
                 method: 'GET', isArray: true, url: 'api/motto/search/:searchTerm',
                 interceptor: {
