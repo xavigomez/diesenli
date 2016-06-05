@@ -33,13 +33,13 @@
                     </md-autocomplete>
                 </div>
                 <div class="col-xs-2">
-                    <button ng-click='vm.advancedSearch(ctrl.searchText, vm.searchBy, vm.advancedSearchLevel)' class='btn btn-default' id="boton-avanzada">Avanzada</button>
+                    <button ng-click='vm.advancedSearch(ctrl.searchText)' class='btn btn-default' id="boton-avanzada">Avanzada</button>
                 </div>
 
             </div>
             <div class="col-xs-10">
-                <div>
-                    <span ng-repeat="pene in vm.penes | orderBy:'nombre'" class="motto-list-item" ng-click='vm.itemClicked({{pene.motto.id}})'>{{pene.motto.nombre}}</span>
+                <div class="a-search-items">
+                    <span ng-repeat="pene in vm.penes | orderBy:'nombre'" class="motto-list-item" ng-click='vm.itemClicked(pene.motto.id)'>{{pene.motto.nombre}}</span>
                 </div>
             </div>
             <div class="col-xs-2"></div>
@@ -79,12 +79,12 @@
                         <div class="dropdown-options hidden-dd"><span data-order-by='1' class="order-by-option">Ordenación por popularidad</span><span data-order-by='2' class="order-by-option">Ordenación normal</span></div>
                     </div>
                 </div>
-                <div class="col-xs-12 advanced-search-switch-container"><span class="advanced-search-switch">opciones avanzadas <i class="fa fa-chevron-left advanced-options-switch"></i></span></div>
+                <div class="col-xs-12 advanced-search-switch-container"><span ng-click="vm.advancedSearchDivControl()"class="advanced-search-switch">opciones avanzadas <i class="fa fa-chevron-left advanced-options-switch"></i></span></div>
             </div>
         </div>
     </section>
     <!-- ADVANCED SEARCH -->
-    <section class='' id="advanced-search-contain">
+    <section ng-class="{true: '', false: 'hidden'}[vm.advancedSearchDiv]" class='' id="advanced-search-contain">
         <div class="container">
             <div id="advanced-search-container" class="row">
                 <div class="col-xs-3 advanced-search">

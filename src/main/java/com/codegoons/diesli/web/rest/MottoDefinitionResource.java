@@ -151,7 +151,7 @@ public class MottoDefinitionResource {
     @Timed
     @Transactional
     public ResponseEntity<List<MottoDefinition>> getMottoDefinitionByParams(
-        @RequestParam(value = "searchTerm", required = true) String searchTerm,
+        @RequestParam(value = "searchTerm", required = false) String searchTerm,
         @RequestParam(value = "searchBy", required = false) Integer searchBy,
         @RequestParam(value = "categorias", required = false) String categorias,
         @RequestParam(value = "materias", required = false) String materias,

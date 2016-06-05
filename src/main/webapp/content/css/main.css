@@ -1681,3 +1681,19 @@ span.motto-list-item.active{
 }
 
 
+.a-search-items{
+    background: white;
+    margin-left: -15px;
+    margin-right: -10px;
+}
+.a-search-items .motto-list-item{
+    color: #656d78;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+}
+.a-search-items .motto-list-item:hover{
+    color: white;
+}

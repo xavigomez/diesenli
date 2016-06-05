@@ -18,6 +18,7 @@
                     return data;
                 }
             },
+            //Aquí es dónde se hace la petición GET con los filtros
             'byFilters': {
                 method: 'GET',
                 isArray: true,

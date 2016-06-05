@@ -11,17 +11,23 @@
 
         vm.penes = [];
 
+        vm.advancedSearchDiv = false;
+
+        vm.advancedSearchDivControl = function(){
+            vm.advancedSearchDiv = ! vm.advancedSearchDiv;
+        }
+
         vm.advancedSearch = function(
-            searchText,
-            searchBy,
+            searchText
             /*advancedSearchCategory,
             advancedSearchMateria,
             advancedSearchRegion,*/
-            advancedSearchLevel
         ) {
 
 
-            console.log('searchText: ' + searchText + '\nsearchBy = ' + searchBy);
+            var searchBy = vm.searchBy;
+
+            console.log(searchText);
             //Función para limpiar arrays
             Array.prototype.clean = function(deleteValue) {
                 for (var i = 0; i < this.length; i++) {
@@ -36,19 +42,27 @@
             //logica para montar los arrays;
             /*advancedSearchCategory.clean(null);
             console.log(advancedSearchCategory);
-            var categoryStr = advancedSearchCategory.join("-");
+            var categoryStr = advancedSearchCategory.join("-");*/
 
+
+            //------ Materia
+            var advancedSearchMateria = vm.advancedSearchMateria;
             advancedSearchMateria.clean(null);
-            console.log(advancedSearchMateria);
             var materiaStr = advancedSearchMateria.join("-");
 
-            advancedSearchRegion.clean(null);
-            console.log(advancedSearchRegion);
-            var regionStr = advancedSearchRegion.join("-");*/
+            console.log(materiaStr);
 
+            //------ Region
+            var advancedSearchRegion = vm.advancedSearchRegion;
+            advancedSearchRegion.clean(null);
+            var regionStr = advancedSearchRegion.join("-");
+            console.log(regionStr);
+
+            //------ Level
+            var advancedSearchLevel = vm.advancedSearchLevel;
             advancedSearchLevel.clean(null);
-            console.log(advancedSearchLevel);
             var levelStr = advancedSearchLevel.join("-");
+            console.log(levelStr);
 
 
 
@@ -56,7 +70,9 @@
                 MottoDefinition.byFilters({
                 searchTerm: searchText,
                 searchBy: searchBy,
-                registros: levelStr
+                registros: levelStr,
+                materias: materiaStr,
+                /*regiones: regionStr*/
                 },
                 function(result){
                     vm.penes = result;
@@ -140,7 +156,7 @@
         vm.advancedSearchCineControl = function(){
             vm.advancedSearchCine = !vm.advancedSearchCine;
             (vm.advancedSearchCine)?
-                vm.advancedSearchMateria[0]='cine':
+                vm.advancedSearchMateria[0]='Cinem.':
                 vm.advancedSearchMateria[0] = null;
         }
 
@@ -148,7 +164,7 @@
         vm.advancedSearchTeatroControl = function(){
             vm.advancedSearchTeatro = !vm.advancedSearchTeatro;
             (vm.advancedSearchTeatro)?
-                vm.advancedSearchMateria[1]='teatro':
+                vm.advancedSearchMateria[1]='Teatro.':
                 vm.advancedSearchMateria[1] = null;
         }
 
@@ -156,7 +172,7 @@
         vm.advancedSearchTelevisionControl = function(){
             vm.advancedSearchTelevision = !vm.advancedSearchTelevision;
             (vm.advancedSearchTelevision)?
-                vm.advancedSearchMateria[2]='television':
+                vm.advancedSearchMateria[2]='TV.':
                 vm.advancedSearchMateria[2] = null;
         }
 
@@ -164,7 +180,7 @@
         vm.advancedSearchArgentinaControl = function(){
             vm.advancedSearchArgentina = !vm.advancedSearchArgentina;
             (vm.advancedSearchArgentina)?
-                vm.advancedSearchRegion[0]='argentina':
+                vm.advancedSearchRegion[0]='Arg.':
                 vm.advancedSearchRegion[0] = null;
         }
 
@@ -172,7 +188,7 @@
         vm.advancedSearchSalamancaControl = function(){
             vm.advancedSearchSalamanca = !vm.advancedSearchSalamanca;
             (vm.advancedSearchSalamanca)?
-                vm.advancedSearchRegion[1]='salamanca':
+                vm.advancedSearchRegion[1]='Sal.':
                 vm.advancedSearchRegion[1] = null;
         }
 
@@ -180,7 +196,7 @@
         vm.advancedSearchUruguayControl = function(){
             vm.advancedSearchUruguay = !vm.advancedSearchUruguay;
             (vm.advancedSearchUruguay)?
-                vm.advancedSearchRegion[2]='uruguay':
+                vm.advancedSearchRegion[2]='Ur.':
                 vm.advancedSearchRegion[2] = null;
         }
 
@@ -265,24 +281,21 @@
             console.log(vm.searchBy);
 
             switch(vm.searchBy){
-                case 1:
-                    $('#search-by').html('Por forma');
+                case 1: $('#search-by').html('Por palabra');
                     break;
-                case 2: $('#search-by').html('Por palabra');
+                case 2: $('#search-by').html('Lema exacto');
                     break;
-                case 3: $('#search-by').html('Lema exacto');
+                case 3: $('#search-by').html('Empieza por');
                     break;
-                case 4: $('#search-by').html('Empieza por');
+                case 4: $('#search-by').html('Acaba en');
                     break;
-                case 5: $('#search-by').html('Acaba en');
+                case 5: $('#search-by').html('Por lema exacto');
                     break;
-                case 6: $('#search-by').html('Por lema exacto');
+                case 6: $('#search-by').html('No empieza por');
                     break;
-                case 7: $('#search-by').html('No empieza por');
+                case 7: $('#search-by').html('No acaba en');
                     break;
-                case 8: $('#search-by').html('No acaba en');
-                    break;
-                case 9: $('#search-by').html('No contiene');
+                case 8: $('#search-by').html('No contiene');
                     break;
                 default: console.log('search-by error');
             }
@@ -383,6 +396,7 @@
         }
 
         function itemClicked(mottoId){
+            console.log(mottoId);
             MottoDefinition.selectedMottoId({selectedMottoId: mottoId}, function(result){
                 vm.mottoDefinitions = result;
             });

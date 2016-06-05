@@ -51,13 +51,18 @@ public class MottoDefinitionCriteriaRepository {
     }
 
     private void filterBySearchBy(Map<String, Object> parameters, Criteria mottoCriteria) {
+
+
         String searchTerm = (String) parameters.get("searchTerm");
 
+
+        //TODO: Aquí es dónde se filtra el tipo de búsqueda ( Empieza por, acaba en, etc...) habría que añadir u case más para el default o poner en el front a default el 1 y que quite el restriction
         if (parameters.containsKey("searchBy")) {
             Integer searchByParam = (Integer) parameters.get("searchBy");
 
             switch (searchByParam) {
                 case 1:
+
                     break;
                 case 2:
                     mottoCriteria.add(Restrictions.ilike("nombre", searchTerm, MatchMode.EXACT));
