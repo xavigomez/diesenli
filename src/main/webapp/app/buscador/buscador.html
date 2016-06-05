@@ -168,7 +168,9 @@
                                     </span>
                                     <span ng-show='vm.relateds' class="card-related-mottos">
                                         <span ng-show='vm.similarity' class="card-relative">
-                                            Por semejanza:<span ng-if="mottoDefinition.lemaSemejanza.id !== undefined">{{mottoDefinition.lemaSemejanza.motto.nombre}}</span><span ng-if="mottoDefinition.lemaSemejanza.id === undefined" class="no-result">No hay antónimos para este lema.</span>
+                                            Por semejanza:
+                                            <span ng-bind-html='mottoDefinition.lemaSemejanza.motto.nombre' ng-if="mottoDefinition.lemaSemejanza.id !== undefined"></span>
+                                            <span ng-if="mottoDefinition.lemaSemejanza.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                         <span ng-show='vm.oposition' class="card-oposition">
                                             Por oposición:<span ng-if="mottoDefinition.lemaOposicion.id !== undefined">{{mottoDefinition.lemaOposicion.motto.nombre}}</span><span ng-if="mottoDefinition.lemaOposicion.id === undefined" class="no-result">No hay antónimos para este lema.</span>
@@ -254,7 +256,7 @@
                 </div>
                 <div class="col-xs-4">
                     <div class="motto-list">
-                        <span ng-repeat="motto in ctrl.mottos | orderBy:'nombre'" class="motto-list-item" ng-click='ctrl.itemClicked(motto.id)'>{{motto.nombre}}</span>
+                        <span ng-if='vm.isList(motto.nombre)' ng-repeat="motto in ctrl.mottos | orderBy:'nombre'" class="motto-list-item" ng-click='ctrl.itemClicked(motto.id)'>{{motto.nombre}}</span>
                     </div>
                 </div>
             </div>

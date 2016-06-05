@@ -603,6 +603,7 @@ header {
 .row#hat #logo-container h3 a {
     color: #fcc766;
     text-decoration: none;
+    font-weight:bold;d
 }
 
 .row#hat #last-update-container span#last-update {

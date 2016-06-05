@@ -5,9 +5,20 @@
         .module('diesliApp')
         .controller('BuscadorController', BuscadorController);
 
-    function BuscadorController ( $timeout, $q, $log, Motto,MottoDefinition ) {
+    function BuscadorController ( $timeout, $q, $log, Motto,MottoDefinition, $scope, Principal, LoginService, $state) {
 
         var vm = this;
+
+        vm.isList = function (item) {
+            if(item.indexOf(',') !== -1){
+                if(item.slice(-1) === 'a'){
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+
 
         vm.penes = [];
 
@@ -40,9 +51,11 @@
             };
 
             //logica para montar los arrays;
-            /*advancedSearchCategory.clean(null);
+
+            var advancedSearchCategory = vm.advancedSearchCategory;
+            advancedSearchCategory.clean(null);
             console.log(advancedSearchCategory);
-            var categoryStr = advancedSearchCategory.join("-");*/
+            var categoryStr = advancedSearchCategory.join("-");
 
 
             //------ Materia
@@ -69,10 +82,12 @@
 
                 MottoDefinition.byFilters({
                 searchTerm: searchText,
-                searchBy: searchBy,
-                registros: levelStr
+                searchBy: searchBy
+                /*registros: levelStr*/
+                //Descomentar para habilitar el envío GET de los filtros avanzados
                 /*materias: materiaStr,
-                regiones: regionStr*/
+                regiones: regionStr,
+                advancedSearchMateria: materiaStr*/
                 },
                 function(result){
                     vm.penes = result;
