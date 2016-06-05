@@ -70,9 +70,9 @@
                 MottoDefinition.byFilters({
                 searchTerm: searchText,
                 searchBy: searchBy,
-                registros: levelStr,
-                materias: materiaStr,
-                /*regiones: regionStr*/
+                registros: levelStr
+                /*materias: materiaStr,
+                regiones: regionStr*/
                 },
                 function(result){
                     vm.penes = result;
