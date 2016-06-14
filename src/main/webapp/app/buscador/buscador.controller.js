@@ -73,10 +73,10 @@
             console.log(levelStr);
 
 
-            if(categoryStr.length == 0){ categoryStr = 'Empty';}
-            if(materiaStr.length == 0){ materiaStr = 'Empty';}
-            if(regionStr.length == 0){ regionStr = 'Empty';}
-            if(levelStr.length == 0){ levelStr = 'Empty';}
+            if(categoryStr.length == 0){ categoryStr = 'empty';}
+            if(materiaStr.length == 0){ materiaStr = 'empty';}
+            if(regionStr.length == 0){ regionStr = 'empty';}
+            if(levelStr.length == 0){ levelStr = 'empty';}
 
 
 
@@ -90,7 +90,7 @@
                 regiones: regionStr
                 },
                 function(result){
-                    vm.avanzados = result;
+                    vm.penes = result;
                 }
             );
 
