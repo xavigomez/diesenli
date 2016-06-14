@@ -62,7 +62,14 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-click='vm.filterEtimology()' ng-class="{true: 'active', false: 'disabled'}[vm.filterEtimology]" id="etymology" class="search-option-container switchable">Etimología</div>
+                    <div
+                        ng-click='vm.filterEtimology()'
+                        ng-class="{true: 'active', false: 'disabled'}[vm.filterEtimology]"
+                        id="etymology"
+                        class="search-option-container switchable"
+                        >
+                            Etimología
+                    </div>
                     <div ng-click='vm.filterSynonym()' id="synonyms" class="search-option-container switchable">Sinónimos</div>
                     <div ng-click='vm.filterAntonym()' id="antonyms" class="search-option-container switchable">Antónimos</div>
                     <div class="dropdown-search-option search-option-container">
@@ -101,7 +108,13 @@
                     <span class="advance-search-header">Materia</span>
                     <div class="advance-search-option-container">
                         <span ng-click="vm.advancedSearchCineControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchCine]" class="advance-search-option">Cinematografía</span>
-                        <span ng-click="vm.advancedSearchTeatroControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchTeatro]" class="advance-search-option">Teatro</span>
+                        <span
+                            ng-click="vm.advancedSearchTeatroControl()"
+                            ng-class="{true: 'active', false: ''}[vm.advancedSearchTeatro]"
+                            class="advance-search-option"
+                            >
+                            Teatro
+                        </span>
                         <span ng-click="vm.advancedSearchTelevisionControl()" ng-class="{true: 'active', false: ''}[vm.advancedSearchTelevision]" class="advance-search-option">Televisión</span>
                     </div>
                 </div>
@@ -132,7 +145,12 @@
                 <div id="results-area" class="col-xs-8">
                     <span class="search-results-claim">Resultados de la búsqueda</span>
                     <span class="search-results-word">{{ctrl.mottoDefinitions[0].motto.nombre}}</span>
-                    <span ng-show="vm.withEtymology" class="search-results-etymology">{{ctrl.mottoDefinitions[0].motto.informacionEtimologica}}</span>
+                    <span
+                        ng-show="vm.withEtymology"
+                        class="search-results-etymology"
+                        >
+                        {{ctrl.mottoDefinitions[0].motto.informacionEtimologica}}
+                    </span>
                     <div id="cards-container" class="row">
                         <div class="col-xs-12">
                             <!--<div style="height: 1000px; background: red;margin-bottom: 40px;"></div>-->

@@ -28,12 +28,7 @@
             vm.advancedSearchDiv = ! vm.advancedSearchDiv;
         }
 
-        vm.advancedSearch = function(
-            searchText
-            /*advancedSearchCategory,
-            advancedSearchMateria,
-            advancedSearchRegion,*/
-        ) {
+        vm.advancedSearch = function(searchText) {
 
 
             var searchBy = vm.searchBy;
@@ -78,19 +73,24 @@
             console.log(levelStr);
 
 
+            if(categoryStr.length == 0){ categoryStr = 'Empty';}
+            if(materiaStr.length == 0){ materiaStr = 'Empty';}
+            if(regionStr.length == 0){ regionStr = 'Empty';}
+            if(levelStr.length == 0){ levelStr = 'Empty';}
+
+
 
 
                 MottoDefinition.byFilters({
                 searchTerm: searchText,
-                searchBy: searchBy
-                /*registros: levelStr*/
-                //Descomentar para habilitar el envío GET de los filtros avanzados
-                /*materias: materiaStr,
-                regiones: regionStr,
-                advancedSearchMateria: materiaStr*/
+                searchBy: searchBy,
+                categorias: categoryStr,
+                registros: levelStr,
+                materias: materiaStr,
+                regiones: regionStr
                 },
                 function(result){
-                    vm.penes = result;
+                    vm.avanzados = result;
                 }
             );
 

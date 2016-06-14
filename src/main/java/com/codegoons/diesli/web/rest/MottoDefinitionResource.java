@@ -166,22 +166,22 @@ public class MottoDefinitionResource {
             params.put("searchBy", searchBy);
         }
 
-        if (categorias != null) {
+        if (categorias != null && !categorias.isEmpty() && ! categorias.equals("empty")){
             String[] categoriasSplit = categorias.split("-");
             params.put("categorias", categoriasSplit);
         }
 
-        if (materias != null) {
+        if (materias != null && !materias.isEmpty() && ! materias.equals("empty")) {
             String[] materiasSplit = materias.split("-");
             params.put("materias", materiasSplit);
         }
 
-        if (regiones != null) {
+        if (regiones != null && !regiones.isEmpty() && ! regiones.equals("empty")) {
             String[] regionesSplit = regiones.split("-");
             params.put("regiones", regionesSplit);
         }
 
-        if (registros != null) {
+        if (registros != null && !registros.isEmpty() && ! registros.equals("empty")) {
             String[] registrosSplit = registros.split("-");
             params.put("registros", registrosSplit);
         }
