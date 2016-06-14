@@ -9,14 +9,22 @@
 
         var vm = this;
 
+        vm.isListRepeatedElement = "";
+
         vm.isList = function (item) {
-            if(item.indexOf(',') !== -1){
-                if(item.slice(-1) === 'a'){
-                    return true;
+            if(item !== vm.isListRepeatedElement){
+                if(item.indexOf(',') !== -1){
+                    if(item.slice(-1) === 'a'){
+                        vm.isListRepeatedElement = item;
+                        return true;
+                    }
+                    vm.isListRepeatedElement = item;
+                    return false;
                 }
-                return false;
+                vm.isListRepeatedElement = item;
+                return true;
             }
-            return true;
+            return false;
         }
 
 

@@ -39,7 +39,7 @@
             </div>
             <div class="col-xs-10">
                 <div class="a-search-items">
-                    <span ng-repeat="pene in vm.penes | orderBy:'nombre'" class="motto-list-item" ng-click='vm.itemClicked(pene.motto.id)'>{{pene.motto.nombre}}</span>
+                    <span ng-repeat="pene in vm.penes | orderBy:'nombre'"ng-if='vm.isList(pene.motto.nombre)' class="motto-list-item" ng-click='vm.itemClicked(pene.motto.id)'>{{pene.motto.nombre}}</span>
                 </div>
             </div>
             <div class="col-xs-2"></div>
