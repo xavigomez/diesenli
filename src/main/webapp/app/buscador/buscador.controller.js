@@ -9,6 +9,23 @@
 
         var vm = this;
 
+        vm.isBenteveo = function(isMottoBenteveo){
+            if(isMottoBenteveo === 'benteveo'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        vm.isCielito = function(isMottoCielito){
+            console.log('isMottoCielito = ' + isMottoCielito);
+            if(isMottoCielito === 'cielito'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         vm.isListRepeatedElement = "";
 
         vm.isList = function (item) {

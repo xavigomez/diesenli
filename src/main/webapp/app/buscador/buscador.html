@@ -24,7 +24,7 @@
                         placeholder="Empieza a escribir aquí la palabra que buscas..."
                         md-select-on-match="true"
                     <md-item-template>
-                        <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.nombre}}</span>
+                        <span ng-if='vm.isList(item.nombre)' md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.nombre}}</span>
                     </md-item-template>
                     <md-not-found>
                         No se han encontrado resultados para "{{ctrl.searchText}}"
@@ -39,7 +39,7 @@
             </div>
             <div class="col-xs-10">
                 <div class="a-search-items">
-                    <span ng-repeat="pene in vm.penes | orderBy:'nombre'"ng-if='vm.isList(pene.motto.nombre)' class="motto-list-item" ng-click='vm.itemClicked(pene.motto.id)'>{{pene.motto.nombre}}</span>
+                    <span ng-repeat="pene in vm.penes | orderBy:'nombre'" ng-if='vm.isList(pene.motto.nombre)' class="motto-list-item" ng-click='vm.itemClicked(pene.motto.id)'>{{pene.motto.nombre}}</span>
                 </div>
             </div>
             <div class="col-xs-2"></div>
@@ -194,6 +194,14 @@
                                             Por oposición:<span ng-if="mottoDefinition.lemaOposicion.id !== undefined">{{mottoDefinition.lemaOposicion.motto.nombre}}</span><span ng-if="mottoDefinition.lemaOposicion.id === undefined" class="no-result">No hay antónimos para este lema.</span>
                                         </span>
                                     </span>
+                                    <span ng-if="vm.isCielito(mottoDefinition.motto.nombre)">
+                                        <div class="video-container">
+                                            <iframe width="960" height="720" src="https://www.youtube.com/embed/3sh0w-P6tig" frameborder="0" allowfullscreen></iframe>
+                                        </div>
+                                    </span>
+                                    <span ng-if="vm.isBenteveo(mottoDefinition.motto.nombre)">
+                                        <img style='margin: 50px 0' class="img-responsive" src="http://1.bp.blogspot.com/-T21u38uAMZc/UIm9Iw52otI/AAAAAAAAABs/sdzWnhHRm5Q/s1600/benteveo.gif ">
+                                    </span>
                                 </div>
                             </div>
                             <div has-authority="ROLE_ADMIN" class="table-responsive">
@@ -284,13 +292,19 @@
 </section>
 <!-- ./ambito del controlador -->
 <script>
+
+
+    $('div.card').click(function(){
+        console.log('click');
+    });
+
     $('span.advanced-search-switch').click(function () {
         $('.logged-user-options').toggleClass('open');
     });
     //Cards
     var lastActiveCard = $( '#cards-container .card:first-child' );
 
-    $( '.card.closed' ).click(function(){
+    $( '.card.ng-scope.closed' ).click(function(){
         lastActiveCard.toggleClass( 'closed' );
         console.log( $( this )  );
         $( this ).toggleClass( 'closed' );
